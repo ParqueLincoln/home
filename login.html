@@ -2,70 +2,70 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Iniciar Sesión</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión | Parque Lincoln</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-green-50 flex items-center justify-center h-screen">
+<body class="bg-gradient-to-br from-green-50 to-green-100 min-h-screen flex flex-col">
 
-  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-    <h1 class="text-2xl font-bold text-green-800 mb-4">Iniciar Sesión</h1>
+  <!-- Banner -->
+  <header class="w-full h-64 bg-cover bg-center relative" style="background-image: url('banner.png')">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative h-full flex items-center justify-center">
+      <h1 class="text-white text-4xl font-bold drop-shadow-md">Parque Lincoln</h1>
+    </div>
+  </header>
 
-    <form id="loginForm" class="space-y-4">
-      <input id="username" type="text" placeholder="Usuario" required class="w-full border border-green-300 p-3 rounded-lg" />
-      <input id="password" type="password" placeholder="Contraseña" required class="w-full border border-green-300 p-3 rounded-lg" />
-      
-      <button type="submit" class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition">Ingresar</button>
-    </form>
+  <!-- Formulario -->
+  <main class="flex-grow flex items-center justify-center">
+    <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-md space-y-6">
+      <h2 class="text-2xl font-bold text-center text-green-700">Iniciar Sesión</h2>
 
-    <div id="mensaje" class="mt-4 text-center text-red-600 font-semibold hidden"></div>
+      <form id="loginForm" class="space-y-4">
+        <input type="text" id="usuario" placeholder="Usuario o correo" required
+          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-green-300" />
+        <input type="password" id="clave" placeholder="Contraseña" required
+          class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-green-300" />
+        <button type="submit"
+          class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">Ingresar</button>
+        <p id="mensaje" class="text-center text-sm text-red-600"></p>
+      </form>
 
-    <button onclick="window.location.href='index.html'" class="mt-6 text-sm text-green-700 underline block text-center">Volver a la página principal</button>
-  </div>
+      <div class="text-center text-sm">
+        <a href="registro.html" class="text-green-600 hover:underline block mb-2">¿No tienes cuenta? Crear una</a>
+        <a href="recuperar.html" class="text-green-600 hover:underline block mb-2">¿Olvidaste tu contraseña?</a>
+        <a href="index.html" class="text-gray-500 hover:underline">← Volver a la página principal</a>
+      </div>
+    </div>
+  </main>
 
   <script>
-    const loginForm = document.getElementById("loginForm");
-    const mensaje = document.getElementById("mensaje");
-
-    loginForm.addEventListener("submit", async function (e) {
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      const user = document.getElementById("username").value.trim();
-      const pass = document.getElementById("password").value.trim();
+      const usuario = document.getElementById('usuario').value.trim().toLowerCase();
+      const clave = document.getElementById('clave').value.trim();
+      const mensaje = document.getElementById('mensaje');
 
       try {
-        const res = await fetch(`http://localhost:3000/usuarios?user=${user}`);
-        const data = await res.json();
+        const response = await fetch('http://localhost:3000/usuarios');
+        if (!response.ok) throw new Error('No se pudo conectar');
 
-        if (data.length === 0) {
-          mensaje.innerText = "❌ Usuario no encontrado";
-          mensaje.classList.remove("hidden");
-          return;
-        }
+        const usuarios = await response.json();
+        const user = usuarios.find(
+          u => (u.usuario.toLowerCase() === usuario || u.correo.toLowerCase() === usuario) && u.clave === clave
+        );
 
-        const usuario = data[0];
-        if (usuario.pass !== pass) {
-          mensaje.innerText = "❌ Contraseña incorrecta";
-          mensaje.classList.remove("hidden");
-          return;
-        }
-
-        // Guardar sesión
-        localStorage.setItem("usuarioActual", JSON.stringify(usuario));
-
-        // Redirección según rol
-        if (usuario.role === "admin") {
-          window.location.href = "index.html?modo=admin";
+        if (user) {
+          localStorage.setItem('usuario', JSON.stringify(user));
+          window.location.href = user.rol === 'admin' ? 'index.html?modo=admin' : 'index.html';
         } else {
-          window.location.href = "index.html?modo=user";
+          mensaje.textContent = "Usuario o contraseña incorrectos.";
         }
-
-      } catch (error) {
-        mensaje.innerText = "Error al conectar con el servidor.";
-        mensaje.classList.remove("hidden");
+      } catch (err) {
+        mensaje.textContent = "Error al conectar con el servidor.";
+        console.error(err);
       }
     });
   </script>
-
 </body>
 </html>
