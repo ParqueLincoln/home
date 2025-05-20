@@ -1,0 +1,16 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "usuario": "marcenaroc64",
+      "clave": "123456789",
+      "rol": "admin"
+    },
+    {
+      "id": 2,
+      "usuario": "visitante",
+      "clave": "1234",
+      "rol": "usuario"
+    }
+  ]
+}

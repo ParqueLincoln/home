@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-50 flex items-center justify-center h-screen">
+
+  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-bold text-green-800 mb-4">Iniciar Sesión</h1>
+
+    <form id="loginForm" class="space-y-4">
+      <input id="username" type="text" placeholder="Usuario" required class="w-full border border-green-300 p-3 rounded-lg" />
+      <input id="password" type="password" placeholder="Contraseña" required class="w-full border border-green-300 p-3 rounded-lg" />
+      
+      <button type="submit" class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition">Ingresar</button>
+    </form>
+
+    <div id="mensaje" class="mt-4 text-center text-red-600 font-semibold hidden"></div>
+
+    <button onclick="window.location.href='index.html'" class="mt-6 text-sm text-green-700 underline block text-center">Volver a la página principal</button>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const mensaje = document.getElementById("mensaje");
+
+    loginForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+
+      try {
+        const res = await fetch(`http://localhost:3000/usuarios?user=${user}`);
+        const data = await res.json();
+
+        if (data.length === 0) {
+          mensaje.innerText = "❌ Usuario no encontrado";
+          mensaje.classList.remove("hidden");
+          return;
+        }
+
+        const usuario = data[0];
+        if (usuario.pass !== pass) {
+          mensaje.innerText = "❌ Contraseña incorrecta";
+          mensaje.classList.remove("hidden");
+          return;
+        }
+
+        // Guardar sesión
+        localStorage.setItem("usuarioActual", JSON.stringify(usuario));
+
+        // Redirección según rol
+        if (usuario.role === "admin") {
+          window.location.href = "index.html?modo=admin";
+        } else {
+          window.location.href = "index.html?modo=user";
+        }
+
+      } catch (error) {
+        mensaje.innerText = "Error al conectar con el servidor.";
+        mensaje.classList.remove("hidden");
+      }
+    });
+  </script>
+
+</body>
+</html>

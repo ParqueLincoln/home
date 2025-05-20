@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parque Lincoln</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #d1fae5, #f0fdf4);
+    }
+    .sticky-header {
+      @apply fixed top-0 left-0 w-full bg-white shadow-md z-50 hidden;
+    }
+    .modo-oscuro {
+      background-color: #111827;
+      color: white;
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-800" id="body">
+  <!-- Barra superior -->
+  <nav class="bg-white text-green-700 shadow-md px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Parque Lincoln</h1>
+    <div id="navOpciones" class="space-x-4">
+      <a href="index.html" class="hover:underline">Inicio</a>
+      <a href="login.html" class="hover:underline">Login</a>
+    </div>
+  </nav>
+
+  <!-- Sticky Header -->
+  <div id="stickyHeader" class="sticky-header text-green-700 text-xl font-bold px-6 py-3 border-b border-green-300">
+    Parque Lincoln
+  </div>
+
+  <!-- Banner -->
+  <header class="w-full h-64 bg-cover bg-center relative" style="background-image: url('banner.png')">
+    <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-green-900 opacity-60"></div>
+    <div class="relative h-full flex items-center justify-center">
+      <h1 class="text-white text-5xl font-extrabold drop-shadow-xl">Parque Lincoln</h1>
+    </div>
+  </header>
+
+  <!-- Galería de Fotos -->
+  <section class="p-6 mt-6">
+    <h2 class="text-3xl font-semibold mb-6 text-green-700">Galería</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <img src="foto1.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
+      <img src="foto2.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
+      <img src="foto3.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
+      <img src="foto4.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
+    </div>
+  </section>
+
+  <!-- Eventos -->
+  <section class="p-6 bg-white rounded-xl shadow-inner mx-4 my-8">
+    <h2 class="text-3xl font-semibold mb-4 text-green-800">Próximos Eventos</h2>
+    <p class="text-lg text-gray-600 italic">Aún no hay eventos programados. ¡Vuelve pronto para más información!</p>
+  </section>
+
+  <!-- Ubicación -->
+  <section class="p-6">
+    <h2 class="text-3xl font-semibold mb-4 text-green-700">Ubicación</h2>
+    <p class="mb-4 text-gray-700">El Parque Lincoln está ubicado en el corazón de la colonia Lincoln. Dirección: <a href="https://www.google.com/maps/place/Parque+Urbanización+Lincoln,+Mejicanos/data=!4m2!3m1!1s0x0:0x87b38ce4cc9950e8?sa=X&ved=1t:2428&ictx=111" class="text-green-700 underline" target="_blank">PQJR+VRQ, Mejicanos</a>. Ven a visitarnos y disfruta de la naturaleza con respeto hacia todos los seres vivos.</p>
+    <iframe class="w-full h-64 rounded-xl shadow-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.129139122685!2d-89.21718362420265!3d13.734497297005223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x87b38ce4cc9950e8!2sParque%20Urbanizaci%C3%B3n%20Lincoln%2C%20Mejicanos!5e0!3m2!1ses-419!2ssv!4v1716236470000!5m2!1ses-419!2ssv" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <!-- Zona de Comentarios -->
+  <section class="p-6 bg-green-50 rounded-xl mx-4 my-8">
+    <h2 class="text-3xl font-semibold mb-4 text-green-800">Comentarios</h2>
+    <form class="space-y-4 max-w-xl">
+      <input type="text" placeholder="Tu nombre" class="w-full p-3 border border-green-300 rounded-xl">
+      <textarea placeholder="Escribe tu comentario..." class="w-full p-3 border border-green-300 rounded-xl"></textarea>
+      <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded-xl hover:bg-green-800 transition">Publicar comentario</button>
+    </form>
+    <div class="mt-6 space-y-4">
+      <div class="bg-white p-4 rounded-xl shadow">
+        <p class="text-sm text-gray-700"><strong>Ana:</strong> ¡Me encanta este parque! Siempre limpio y lleno de vida.</p>
+      </div>
+      <div class="bg-white p-4 rounded-xl shadow">
+        <p class="text-sm text-gray-700"><strong>Carlos:</strong> Muy buena iniciativa compartir eventos aquí. ¡Sigan así!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center p-4 text-green-900 text-sm">
+    &copy; 2025 Parque Lincoln. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const stickyHeader = document.getElementById('stickyHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 150) {
+        stickyHeader.classList.remove('hidden');
+      } else {
+        stickyHeader.classList.add('hidden');
+      }
+    });
+
+    // Detectar sesión y modificar interfaz
+    const usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+    const navOpciones = document.getElementById("navOpciones");
+    const body = document.getElementById("body");
+
+    if (usuario) {
+      navOpciones.innerHTML = `
+        <span>Hola, ${usuario.user}</span>
+        <a href="perfil.html" class="hover:underline">Perfil</a>
+        <button onclick="cerrarSesion()" class="hover:underline">Cerrar sesión</button>
+      `;
+
+      if (usuario.role === "admin") {
+        body.classList.add("modo-oscuro");
+        navOpciones.innerHTML += `<a href="admin.html" class="hover:underline">Panel Admin</a>`;
+      }
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem("usuarioActual");
+      location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
