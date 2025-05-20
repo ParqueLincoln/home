@@ -8,7 +8,7 @@
     },
     {
       "id": 2,
-      "usuario": "visitante",
+      "usuario": "admin",
       "clave": "1234",
       "rol": "usuario"
     }
