@@ -1,124 +1,306 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parque Lincoln</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(to bottom right, #d1fae5, #f0fdf4);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parque Lincoln</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      /* Fondo claro original para el cuerpo de la página */
+      background: linear-gradient(to bottom right, #d1fae5, #f0fdf4);
+      color: #4a5568; /* text-gray-800 */
+    }
+    /* La clase .sticky-header ya no es necesaria, se ha eliminado */
+    /* .sticky-header {
+      @apply fixed top-0 left-0 w-full bg-white shadow-md z-50 hidden;
+    } */
+    .modo-oscuro {
+      /* Estilos para el modo oscuro (activado por rol de admin) */
+      background-color: #111827; /* Fondo muy oscuro */
+      color: white; /* Texto blanco */
+    }
+
+    /* Estilos para el contenedor de la imagen y el overlay */
+    .image-container {
+        position: relative;
+        overflow: hidden; /* Asegura que el overlay y la escala no se salgan */
+        cursor: pointer; /* Indica que es interactivo */
+        /* Borde sutil para las imágenes en la galería - ELIMINADO para el diseño original de la galería */
+        border-radius: 0.75rem; /* Asegura que el borde también tenga las esquinas redondeadas */
     }
-    .sticky-header {
-      @apply fixed top-0 left-0 w-full bg-white shadow-md z-50 hidden;
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Overlay original de la galería (verde semitransparente) */
+        background-color: rgba(6, 95, 70, 0.6);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0; /* Oculto por defecto */
+        transition: opacity 0.3s ease-in-out; /* Transición suave para la aparición */
+        border-radius: 0.75rem; /* Hereda el redondeo de las esquinas de la imagen */
     }
-    .modo-oscuro {
-      background-color: #111827;
-      color: white;
+
+    .image-container:hover .image-overlay {
+        opacity: 1; /* Se muestra al pasar el mouse */
     }
-  </style>
+
+    /* Aplica la escala a la imagen dentro del contenedor al pasar el mouse */
+    .image-container:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out; /* Transición suave para la escala */
+    }
+ </style>
 </head>
 <body class="font-sans text-gray-800" id="body">
-  <!-- Barra superior -->
-  <nav class="bg-white text-green-700 shadow-md px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">Parque Lincoln</h1>
-    <div id="navOpciones" class="space-x-4">
-      <a href="index.html" class="hover:underline">Inicio</a>
-      <a href="login.html" class="hover:underline">Login</a>
+        <nav class="bg-white text-green-700 shadow-md px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Parque Lincoln</h1>
+    <div id="navOpciones" class="space-x-4">
+      <a href="index.html" class="hover:underline">Inicio</a>
+      <a href="login.html" class="hover:underline">Login</a>
+    </div>
+  </nav>
+
+        <header class="w-full h-64 bg-cover bg-center relative" style="background-image: url('banner.png')">
+    <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-green-900 opacity-60"></div>
+    <div class="relative h-full flex items-center justify-center">
+      <h1 class="text-white text-5xl font-extrabold drop-shadow-xl">Parque Lincoln</h1>
+    </div>
+  </header>
+
+        <section class="p-6 mt-6">
+    <h2 class="text-3xl font-semibold mb-6 text-green-700">Galería</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="image-container rounded-xl shadow-xl">
+        <img src="foto1.jpg" alt="Foto del parque" class="w-full h-full object-cover rounded-xl">
+        <div class="image-overlay">
+          <p class="text-lg font-bold">Ver Foto</p>
+        </div>
+      </div>
+      <div class="image-container rounded-xl shadow-xl">
+        <img src="sinfoto.png" alt="Foto del parque" class="w-full h-full object-cover rounded-xl">
+        <div class="image-overlay">
+          <p class="text-lg font-bold">Ver Foto</p>
+        </div>
+      </div>
+      <div class="image-container rounded-xl shadow-xl">
+        <img src="sinfoto.png" alt="Foto del parque" class="w-full h-full object-cover rounded-xl">
+        <div class="image-overlay">
+          <p class="text-lg font-bold">Ver Foto</p>
+        </div>
+      </div>
+      <div class="image-container rounded-xl shadow-xl">
+        <img src="sinfoto.png" alt="Foto del parque" class="w-full h-full object-cover rounded-xl">
+        <div class="image-overlay">
+          <p class="text-lg font-bold">Ver Foto</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+            <section class="p-6 bg-white rounded-xl shadow-inner mx-4 my-8">
+    <h2 class="text-3xl font-semibold mb-4 text-green-800">Próximos Eventos</h2>
+    <p class="text-lg text-gray-600 italic mb-4">Aún no hay eventos programados. ¡Vuelve pronto para más información!</p>
+
+        <button id="generateEventIdeas" class="bg-green-700 text-white px-6 py-3 rounded-xl hover:bg-green-800 transition flex items-center justify-center space-x-2">
+            <span class="text-xl">✨</span> <span>Generar Ideas de Eventos</span>
+        </button>
+
+        <div id="eventIdeasOutput" class="mt-6 space-y-4">
+            <div id="loadingIndicator" class="hidden text-center text-green-700 font-semibold">Cargando ideas...</div>
+        </div>
+  </section>
+
+        <section class="p-6">
+    <h2 class="text-3xl font-semibold mb-4 text-green-700">Ubicación</h2>
+    <p class="mb-4 text-gray-700">El Parque Lincoln está ubicado en el corazón de la colonia Lincoln. Dirección: <a href="https://www.google.com/maps/place/Parque+Urbanización+Lincoln,+Mejicanos/data=!4m2!3m1!1s0x0:0x87b38ce4cc9950e8?sa=X&ved=1t:2428&ictx=111" class="text-green-700 underline" target="_blank">PQJR+VRQ, Mejicanos</a>. Ven a visitarnos y disfruta de la naturaleza con respeto hacia todos los seres vivos.</p>
+    <iframe class="w-full h-64 rounded-xl shadow-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.129139122685!2d-89.21718362420265!3d13.734497297005223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x87b38ce4cc9950e8!2sParque%20Urbanizaci%C3%B3n%20Lincoln%2C%20Mejicanos!5e0!3m2!1ses-419!2ssv!4v1716236470000!5m2!1ses-419!2ssv" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+        <section class="p-6 bg-green-50 rounded-xl mx-4 my-8">
+    <h2 class="text-3xl font-semibold mb-4 text-green-800">Comentarios</h2>
+    <form class="space-y-4 max-w-xl">
+      <input type="text" placeholder="Tu nombre" class="w-full p-3 border border-green-300 rounded-xl">
+      <textarea placeholder="Escribe tu comentario..." class="w-full p-3 border border-green-300 rounded-xl"></textarea>
+      <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded-xl hover:bg-green-800 transition">Publicar comentario</button>
+    </form>
+    <div class="mt-6 space-y-4">
+      <div class="bg-white p-4 rounded-xl shadow">
+        <p class="text-sm text-gray-700"><strong>Ana:</strong> ¡Me encanta este parque! Siempre limpio y lleno de vida.</p>
+      </div>
+      <div class="bg-white p-4 rounded-xl shadow">
+        <p class="text-sm text-gray-700"><strong>Carlos:</strong> Muy buena iniciativa compartir eventos aquí. ¡Sigan así!</p>
+      </div>
+    </div>
+  </section>
+
+    <footer class="text-center p-4 text-green-900 text-sm">
+    © 2025 Parque Lincoln. Todos los derechos reservados. Creada por Carlos Marcenaro
+  </footer>
+
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-gray-900 p-4 rounded-lg shadow-2xl max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
+            <button id="closeModal" class="absolute top-2 right-2 text-gray-300 hover:text-gray-100 text-3xl font-bold leading-none focus:outline-none">
+                ×
+            </button>
+            <img id="modalImage" src="" alt="Imagen ampliada" class="max-w-full max-h-full object-contain rounded-lg">
+        </div>
     </div>
-  </nav>
 
-  <!-- Sticky Header -->
-  <div id="stickyHeader" class="sticky-header text-green-700 text-xl font-bold px-6 py-3 border-b border-green-300">
-    Parque Lincoln
-  </div>
+  <script>
+    // Detectar sesión y modificar interfaz (lógica existente)
+    const usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+    const navOpciones = document.getElementById("navOpciones");
+    const body = document.getElementById("body");
 
-  <!-- Banner -->
-  <header class="w-full h-64 bg-cover bg-center relative" style="background-image: url('banner.png')">
-    <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-green-900 opacity-60"></div>
-    <div class="relative h-full flex items-center justify-center">
-      <h1 class="text-white text-5xl font-extrabold drop-shadow-xl">Parque Lincoln</h1>
-    </div>
-  </header>
+    if (usuario) {
+      navOpciones.innerHTML = `
+        <span>Hola, ${usuario.user}</span>
+        <a href="perfil.html" class="hover:underline">Perfil</a>
+        <button onclick="cerrarSesion()" class="hover:underline">Cerrar sesión</button>
+      `;
 
-  <!-- Galería de Fotos -->
-  <section class="p-6 mt-6">
-    <h2 class="text-3xl font-semibold mb-6 text-green-700">Galería</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <img src="foto1.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
-      <img src="foto2.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
-      <img src="foto3.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
-      <img src="foto4.jpg" alt="Foto del parque" class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
-    </div>
-  </section>
+      if (usuario.role === "admin") {
+        body.classList.add("modo-oscuro");
+        // Asegura que los enlaces de navegación también se adapten al modo oscuro
+        navOpciones.querySelectorAll('a, span, button').forEach(el => {
+          el.classList.add('text-white');
+          el.classList.remove('text-green-700'); // Si es necesario revertir el color original
+        });
+        navOpciones.innerHTML += `<a href="admin.html" class="hover:underline text-white">Panel Admin</a>`;
+      }
+    }
 
-  <!-- Eventos -->
-  <section class="p-6 bg-white rounded-xl shadow-inner mx-4 my-8">
-    <h2 class="text-3xl font-semibold mb-4 text-green-800">Próximos Eventos</h2>
-    <p class="text-lg text-gray-600 italic">Aún no hay eventos programados. ¡Vuelve pronto para más información!</p>
-  </section>
+    function cerrarSesion() {
+      localStorage.removeItem("usuarioActual");
+      location.href = "index.html";
+    }
 
-  <!-- Ubicación -->
-  <section class="p-6">
-    <h2 class="text-3xl font-semibold mb-4 text-green-700">Ubicación</h2>
-    <p class="mb-4 text-gray-700">El Parque Lincoln está ubicado en el corazón de la colonia Lincoln. Dirección: <a href="https://www.google.com/maps/place/Parque+Urbanización+Lincoln,+Mejicanos/data=!4m2!3m1!1s0x0:0x87b38ce4cc9950e8?sa=X&ved=1t:2428&ictx=111" class="text-green-700 underline" target="_blank">PQJR+VRQ, Mejicanos</a>. Ven a visitarnos y disfruta de la naturaleza con respeto hacia todos los seres vivos.</p>
-    <iframe class="w-full h-64 rounded-xl shadow-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.129139122685!2d-89.21718362420265!3d13.734497297005223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x87b38ce4cc9950e8!2sParque%20Urbanizaci%C3%B3n%20Lincoln%2C%20Mejicanos!5e0!3m2!1ses-419!2ssv!4v1716236470000!5m2!1ses-419!2ssv" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </section>
+    // JavaScript para la funcionalidad del modal de imágenes
+    const imageContainers = document.querySelectorAll('.image-container');
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModalBtn = document.getElementById('closeModal');
 
-  <!-- Zona de Comentarios -->
-  <section class="p-6 bg-green-50 rounded-xl mx-4 my-8">
-    <h2 class="text-3xl font-semibold mb-4 text-green-800">Comentarios</h2>
-    <form class="space-y-4 max-w-xl">
-      <input type="text" placeholder="Tu nombre" class="w-full p-3 border border-green-300 rounded-xl">
-      <textarea placeholder="Escribe tu comentario..." class="w-full p-3 border border-green-300 rounded-xl"></textarea>
-      <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded-xl hover:bg-green-800 transition">Publicar comentario</button>
-    </form>
-    <div class="mt-6 space-y-4">
-      <div class="bg-white p-4 rounded-xl shadow">
-        <p class="text-sm text-gray-700"><strong>Ana:</strong> ¡Me encanta este parque! Siempre limpio y lleno de vida.</p>
-      </div>
-      <div class="bg-white p-4 rounded-xl shadow">
-        <p class="text-sm text-gray-700"><strong>Carlos:</strong> Muy buena iniciativa compartir eventos aquí. ¡Sigan así!</p>
-      </div>
-    </div>
-  </section>
+    // Función para abrir el modal
+    function openModal(imageSrc, imageAlt) {
+        modalImage.src = imageSrc;
+        modalImage.alt = imageAlt;
+        imageModal.classList.remove('opacity-0', 'pointer-events-none');
+        imageModal.classList.add('opacity-100', 'pointer-events-auto');
+    }
 
-  <footer class="text-center p-4 text-green-900 text-sm">
-    &copy; 2025 Parque Lincoln. Todos los derechos reservados.
-  </footer>
+    // Función para cerrar el modal
+    function closeModal() {
+        imageModal.classList.remove('opacity-100', 'pointer-events-auto');
+        imageModal.classList.add('opacity-0', 'pointer-events-none');
+    }
 
-  <script>
-    const stickyHeader = document.getElementById('stickyHeader');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 150) {
-        stickyHeader.classList.remove('hidden');
-      } else {
-        stickyHeader.classList.add('hidden');
-      }
+    // Añadir event listeners a cada contenedor de imagen
+    imageContainers.forEach(container => {
+        container.addEventListener('click', () => {
+            const img = container.querySelector('img'); // Selecciona la imagen dentro del contenedor
+            openModal(img.src, img.alt);
+        });
     });
 
-    // Detectar sesión y modificar interfaz
-    const usuario = JSON.parse(localStorage.getItem("usuarioActual"));
-    const navOpciones = document.getElementById("navOpciones");
-    const body = document.getElementById("body");
+    // Añadir event listener al botón de cierre
+    closeModalBtn.addEventListener('click', closeModal);
 
-    if (usuario) {
-      navOpciones.innerHTML = `
-        <span>Hola, ${usuario.user}</span>
-        <a href="perfil.html" class="hover:underline">Perfil</a>
-        <button onclick="cerrarSesion()" class="hover:underline">Cerrar sesión</button>
-      `;
+    // Cerrar modal al hacer clic fuera de la imagen (en el overlay)
+    imageModal.addEventListener('click', (event) => {
+        if (event.target === imageModal) { // Solo cierra si se hace clic en el fondo del modal
+            closeModal();
+        }
+    });
 
-      if (usuario.role === "admin") {
-        body.classList.add("modo-oscuro");
-        navOpciones.innerHTML += `<a href="admin.html" class="hover:underline">Panel Admin</a>`;
-      }
-    }
+    // Cerrar modal con la tecla Escape
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && imageModal.classList.contains('opacity-100')) {
+            closeModal();
+        }
+    });
 
-    function cerrarSesion() {
-      localStorage.removeItem("usuarioActual");
-      location.href = "index.html";
-    }
-  </script>
+    // Lógica para la generación de ideas de eventos con la API de Gemini
+    const generateEventIdeasBtn = document.getElementById('generateEventIdeas');
+    const eventIdeasOutput = document.getElementById('eventIdeasOutput');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+
+    generateEventIdeasBtn.addEventListener('click', async () => {
+        eventIdeasOutput.innerHTML = ''; // Limpiar ideas anteriores
+        loadingIndicator.classList.remove('hidden'); // Mostrar indicador de carga
+
+        try {
+            let chatHistory = [];
+            const prompt = "Genera 3 ideas creativas y atractivas para eventos en un parque público, incluyendo un título, una breve descripción y una fecha o temporada sugerida para cada uno. Asegúrate de que las ideas sean variadas y aptas para un parque familiar. Proporciona la respuesta en formato JSON.";
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "title": { "type": "STRING" },
+                                "description": { "type": "STRING" },
+                                "suggestedTime": { "type": "STRING" }
+                            },
+                            "propertyOrdering": ["title", "description", "suggestedTime"]
+                        }
+                    }
+                }
+            };
+
+            const apiKey = ""; // La API key se proporcionará en tiempo de ejecución por Canvas
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                const jsonText = result.candidates[0].content.parts[0].text;
+                const eventIdeas = JSON.parse(jsonText);
+
+                if (Array.isArray(eventIdeas) && eventIdeas.length > 0) {
+                    eventIdeas.forEach(idea => {
+                        const ideaDiv = document.createElement('div');
+                        ideaDiv.classList.add('bg-green-100', 'p-4', 'rounded-lg', 'shadow-md');
+                        ideaDiv.innerHTML = `
+                            <h3 class="text-xl font-semibold text-green-900">${idea.title}</h3>
+                            <p class="text-gray-700 mt-2">${idea.description}</p>
+                            <p class="text-sm text-gray-500 mt-2">✨ **Tiempo Sugerido:** ${idea.suggestedTime}</p>
+                        `;
+                        eventIdeasOutput.appendChild(ideaDiv);
+                    });
+                } else {
+                    eventIdeasOutput.innerHTML = '<p class="text-red-600">No se pudieron generar ideas de eventos. Inténtalo de nuevo.</p>';
+                }
+            } else {
+                eventIdeasOutput.innerHTML = '<p class="text-red-600">Error al obtener la respuesta de la IA. Inténtalo de nuevo.</p>';
+            }
+        } catch (error) {
+            console.error('Error al generar ideas de eventos:', error);
+            eventIdeasOutput.innerHTML = '<p class="text-red-600">Ocurrió un error al conectar con la IA. Por favor, verifica tu conexión.</p>';
+        } finally {
+            loadingIndicator.classList.add('hidden'); // Ocultar indicador de carga
+        }
+    });
+  </script>
 </body>
 </html>
