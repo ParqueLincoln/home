@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservar Evento Popol-Nah - Parque Lincoln</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+        Estilos Generales y Modo Claro (por defecto)
+        ========================================================================== */
+    body {
+      background: linear-gradient(to bottom right, #e0f2f7, #f0fdf4); /* Fondo claro suave */
+      color: #4a5568; /* text-gray-800 */
+      font-family: 'Inter', sans-serif; /* Fuente moderna */
+      transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el tema */
+    }
+
+    /* Estilos para la barra de navegación */
+    nav {
+        background-color: #ffffff; /* bg-white */
+        color: #047857; /* text-green-700 */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav h1 {
+        color: #047857; /* text-green-700 */
+    }
+
+    nav a {
+        color: #047857; /* text-green-700 */
+    }
+
+    /* Estilos para el pie de página */
+    footer {
+        background-color: #ffffff; /* Fondo blanco por defecto */
+        color: #065f46; /* text-green-900 */
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05); /* Sombra sutil hacia arriba */
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Estilos para secciones con fondos específicos en modo claro */
+    section.events-section,
+    section.comments-section,
+    section.history-section,
+    section.gallery-section,
+    section.location-section,
+    section.reservation-section { /* Nueva clase para la sección de reserva */
+        background-color: #ffffff; /* Fondo blanco para secciones */
+        border-radius: 1rem; /* Bordes más redondeados */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada */
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* La sección de ubicación no tenía un fondo específico, ahora lo tendrá */
+    section.location-section {
+        background-color: #ffffff;
+    }
+
+    /* Estilos para títulos y párrafos */
+    h2 {
+        color: #065f46; /* text-green-700 */
+    }
+
+    h3 {
+        color: #065f46; /* text-green-800 */
+    }
+
+    p {
+        color: #4a5568; /* text-gray-700 */
+    }
+
+    a {
+        color: #047857; /* text-green-700 */
+    }
+
+    /* Estilos para campos de formulario */
+    input,
+    textarea {
+        border-color: #a7f3d0; /* border-green-300 */
+        background-color: #ffffff;
+        color: #4a5568;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.06); /* Sombra interna sutil */
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Estilos para elementos específicos */
+    .comment-item {
+        background-color: #f0fdf4; /* Fondo más claro para items de comentario */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08); /* Sombra ligera */
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-item-card { /* Clase para el card de evento específico */
+        background-color: #d1fae5; /* bg-green-100 */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra ligera */
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .event-item-card h3 {
+        color: #064e3b; /* text-green-900 */
+    }
+    .event-item-card p {
+        color: #4a5568; /* text-gray-700 */
+    }
+    .event-item-card p.text-sm {
+        color: #6b7280; /* text-gray-500 */
+    }
+
+    /* ==========================================================================
+        Estilos para el Modo Oscuro (se aplican cuando body tiene la clase 'modo-oscuro')
+        ========================================================================== */
+    body.modo-oscuro {
+      background: #0d1117; /* Fondo muy oscuro, base */
+      color: #c9d1d9; /* Texto gris claro para legibilidad */
+    }
+
+    body.modo-oscuro nav,
+    body.modo-oscuro footer {
+        background-color: #161b22; /* Un gris oscuro para nav y footer */
+        color: #58a6ff; /* Azul vibrante para texto en nav/footer */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra más oscura */
+    }
+
+    body.modo-oscuro nav h1,
+    body.modo-oscuro nav a,
+    body.modo-oscuro nav span,
+    body.modo-oscuro nav button {
+        color: #58a6ff; /* Azul vibrante para enlaces y títulos en nav */
+    }
+
+    body.modo-oscuro section.events-section,
+    body.modo-oscuro section.comments-section,
+    body.modo-oscuro section.history-section,
+    body.modo-oscuro section.gallery-section,
+    body.modo-oscuro section.location-section,
+    body.modo-oscuro section.reservation-section { /* Para la sección de reserva */
+        background-color: #161b22; /* Fondo oscuro consistente para todas las secciones */
+        color: #c9d1d9; /* Texto gris claro */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15); /* Sombra más oscura y pronunciada */
+    }
+
+    body.modo-oscuro h2,
+    body.modo-oscuro h3 {
+        color: #34d399; /* Verde esmeralda para títulos de sección */
+    }
+
+    body.modo-oscuro p,
+    body.modo-oscuro a:not(.hover\:underline) {
+        color: #8b949e; /* Gris medio para párrafos */
+    }
+
+    body.modo-oscuro input,
+    body.modo-oscuro textarea {
+        background-color: #0d1117; /* Fondo de input/textarea muy oscuro */
+        border-color: #30363d; /* Borde más oscuro */
+        color: #c9d1d9; /* Texto claro */
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.3); /* Sombra interna más oscura */
+    }
+
+    body.modo-oscuro .comment-item {
+        background-color: #21262d; /* Fondo de comentario más oscuro */
+        color: #c9d1d9; /* Texto de comentario gris claro */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Sombra más oscura */
+    }
+
+    body.modo-oscuro .event-item-card {
+        background-color: #21262d; /* Fondo de tarjeta de evento más oscuro */
+        color: #c9d1d9;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra más oscura */
+    }
+    body.modo-oscuro .event-item-card h3 {
+        color: #34d399; /* Verde esmeralda para título de evento */
+    }
+    body.modo-oscuro .event-item-card p {
+        color: #8b949e; /* Gris medio para texto de evento */
+    }
+
+
+    /* ==========================================================================
+        Estilos de Componentes Específicos (Galería y Modal)
+        ========================================================================== */
+    /* Estilos para el contenedor de la imagen y el overlay de la galería */
+    .image-container {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 0.75rem;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(6, 95, 70, 0.6); /* Overlay original de la galería (verde semitransparente) */
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 0.75rem;
+    }
+
+    .image-container:hover .image-overlay {
+        opacity: 1;
+    }
+
+    .image-container:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
+ </style>
+</head>
+<body class="font-sans" id="body">
+    <!-- ==========================================================================
+          Barra de Navegación Principal
+          ========================================================================== -->
+    <nav class="shadow-md px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Parque Lincoln</h1>
+    <div id="navOpciones" class="space-x-4">
+      <a href="index.html" class="hover:underline">Inicio</a>
+      <a href="login.html" class="hover:underline">Login</a>
+        <button id="darkModeToggle" class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full hover:bg-gray-300 transition">Modo Oscuro</button>
+    </div>
+  </nav>
+
+    <!-- ==========================================================================
+          Banner Principal
+          ========================================================================== -->
+    <header class="w-full h-64 bg-cover bg-center relative" style="background-image: url('banner.png')">
+    <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-green-900 opacity-60"></div>
+    <div class="relative h-full flex items-center justify-center">
+      <h1 class="text-white text-5xl font-extrabold drop-shadow-xl">Reservar Evento Popol-Nah</h1>
+    </div>
+  </header>
+
+    <!-- ==========================================================================
+          Sección: Formulario de Reserva Popol-Nah
+          ========================================================================== -->
+    <section class="p-6 mt-6 rounded-xl shadow-inner mx-4 my-8 reservation-section">
+        <h2 class="text-3xl font-semibold mb-6 text-center">Formulario de Reserva para "Noche de Cuentos y Leyendas Popol-Nah"</h2>
+        <form id="reservationForm" class="space-y-6 max-w-2xl mx-auto p-6 rounded-lg shadow-lg bg-gray-50 dark:bg-gray-800">
+            <div class="flex flex-col">
+                <label for="fechaInicio" class="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Fecha y Hora de Inicio:</label>
+                <input type="datetime-local" id="fechaInicio" name="fechaInicio" required class="w-full p-3 border rounded-xl focus:ring-blue-500 focus:border-blue-500">
+                <p id="fechaInicioError" class="text-red-500 text-sm mt-1 hidden">La fecha de inicio no puede ser anterior a la fecha actual.</p>
+            </div>
+            <div class="flex flex-col">
+                <label for="fechaFin" class="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Fecha y Hora de Fin:</label>
+                <input type="datetime-local" id="fechaFin" name="fechaFin" required class="w-full p-3 border rounded-xl focus:ring-blue-500 focus:border-blue-500">
+                <p id="fechaFinError" class="text-red-500 text-sm mt-1 hidden">La fecha de fin no puede ser igual o anterior a la fecha de inicio.</p>
+            </div>
+            <div class="flex flex-col">
+                <label for="correo" class="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Tu Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo@dominio.com" required class="w-full p-3 border rounded-xl focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="flex flex-col">
+                <label for="evento" class="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Descripción del Evento:</label>
+                <textarea id="evento" name="evento" placeholder="Describe brevemente lo que se realizará en el evento (mínimo 15 caracteres)" required minlength="15" rows="4" class="w-full p-3 border rounded-xl focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                    Enviar Reserva
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ==========================================================================
+          Pie de Página
+          ========================================================================== -->
+    <footer class="text-center p-4 text-sm">
+    © 2025 Parque Lincoln. Todos los derechos reservados. Creada por Carlos Marcenaro
+  </footer>
+
+    <!-- ==========================================================================
+          Modal para la Visualización de Imágenes (Lightbox) - Mantenido por consistencia
+          ========================================================================== -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-gray-900 p-4 rounded-lg shadow-2xl max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
+            <button id="closeModal" class="absolute top-2 right-2 text-gray-300 hover:text-gray-100 text-3xl font-bold leading-none focus:outline-none">
+                ×
+            </button>
+            <img id="modalImage" src="" alt="Imagen ampliada" class="max-w-full max-h-full object-contain rounded-lg">
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+          Scripts JavaScript
+          ========================================================================== -->
+  <script>
+    // Lógica para detectar sesión y modificar interfaz (existente)
+    const usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+    const navOpciones = document.getElementById("navOpciones");
+    const body = document.getElementById("body");
+
+    if (usuario) {
+      navOpciones.innerHTML = `
+        <span>Hola, ${usuario.user}</span>
+        <a href="perfil.html" class="hover:underline">Perfil</a>
+        <button onclick="cerrarSesion()" class="hover:underline">Cerrar sesión</button>
+      `;
+
+      if (usuario.role === "admin") {
+        navOpciones.innerHTML += `<a href="admin.html" class="hover:underline">Panel Admin</a>`;
+      }
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem("usuarioActual");
+      location.href = "index.html";
+    }
+
+    // Lógica para el botón de Modo Oscuro
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
+    // Función para aplicar o remover el modo oscuro
+    function applyDarkMode(isDarkMode) {
+        if (isDarkMode) {
+            body.classList.add('modo-oscuro');
+            darkModeToggle.textContent = 'Modo Claro';
+            darkModeToggle.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+            darkModeToggle.classList.add('bg-gray-700', 'text-white', 'hover:bg-gray-600');
+        } else {
+            body.classList.remove('modo-oscuro');
+            darkModeToggle.textContent = 'Modo Oscuro';
+            darkModeToggle.classList.remove('bg-gray-700', 'text-white', 'hover:bg-gray-600');
+            darkModeToggle.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+        }
+    }
+
+    // Verificar la preferencia de modo oscuro en el almacenamiento local al cargar la página
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    applyDarkMode(savedDarkMode); // Aplica el modo oscuro guardado al cargar
+
+    // Alternar modo oscuro al hacer clic en el botón
+    darkModeToggle.addEventListener('click', () => {
+        const currentMode = body.classList.contains('modo-oscuro');
+        applyDarkMode(!currentMode);
+        localStorage.setItem('darkMode', !currentMode);
+    });
+
+    // ==========================================================================
+    // Lógica Específica del Formulario de Reserva (popol-nah.html)
+    // ==========================================================================
+    const fechaInicioInput = document.getElementById('fechaInicio');
+    const fechaFinInput = document.getElementById('fechaFin');
+    const fechaInicioError = document.getElementById('fechaInicioError');
+    const fechaFinError = document.getElementById('fechaFinError');
+    const reservationForm = document.getElementById('reservationForm');
+
+    // Función para obtener la fecha y hora actual en formato YYYY-MM-DDTHH:MM
+    function getCurrentDateTimeLocal() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+
+    // 1. Establecer la fecha y hora actual por defecto y como mínimo para fechaInicio
+    const currentDateTime = getCurrentDateTimeLocal();
+    fechaInicioInput.value = currentDateTime;
+    fechaInicioInput.min = currentDateTime;
+
+    // Función para validar la fecha de fin
+    function validateFechaFin() {
+        const inicio = new Date(fechaInicioInput.value);
+        const fin = new Date(fechaFinInput.value);
+
+        if (fin <= inicio) {
+            fechaFinError.classList.remove('hidden');
+            return false;
+        } else {
+            fechaFinError.classList.add('hidden');
+            return true;
+        }
+    }
+
+    // Event listener para actualizar el mínimo de fechaFin cuando cambia fechaInicio
+    fechaInicioInput.addEventListener('change', () => {
+        fechaFinInput.min = fechaInicioInput.value; // La fecha de fin no puede ser anterior a la de inicio
+        validateFechaFin(); // Re-validar fechaFin si fechaInicio cambia
+    });
+
+    // E vent listener para validar fechaFin al cambiar
+    fechaFinInput.addEventListener('change', validateFechaFin);
+
+
+    // Lógica para el envío del formulario de reserva
+    if (reservationForm) {
+        reservationForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío normal del formulario
+
+            // Validar fechas antes de enviar
+            const isFechaFinValid = validateFechaFin();
+            const isFechaInicioValid = new Date(fechaInicioInput.value) >= new Date(currentDateTime); // Re-validar por si acaso
+
+            if (!isFechaInicioValid) {
+                fechaInicioError.classList.remove('hidden');
+                return; // Detener el envío si la fecha de inicio no es válida
+            } else {
+                fechaInicioError.classList.add('hidden');
+            }
+
+            if (!isFechaFinValid) {
+                return; // Detener el envío si la fecha de fin no es válida
+            }
+
+            const fechaInicio = fechaInicioInput.value;
+            const fechaFin = fechaFinInput.value;
+            const correo = document.getElementById('correo').value;
+            const evento = document.getElementById('evento').value; // Ahora obtiene el valor del textarea
+
+            // Formatear los datos para el cuerpo del correo
+            const subject = encodeURIComponent(`Nueva Reserva de Evento Popol-Nah`);
+            const body = encodeURIComponent(
+                `Detalles de la Reserva:\n\n` +
+                `Fecha y Hora de Inicio: ${fechaInicio}\n` +
+                `Fecha y Hora de Fin: ${fechaFin}\n` +
+                `Correo del Solicitante: ${correo}\n` +
+                `Descripción del Evento: ${evento}\n\n` +
+                `Por favor, confirme su reserva.`
+            );
+
+            // Crear el enlace mailto
+            const mailtoLink = `mailto:lincolnparque825@gmail.com?subject=${subject}&body=${body}`;
+
+            // Abrir el cliente de correo
+            window.location.href = mailtoLink;
+        });
+    }
+
+    // El modal de imágenes no es estrictamente necesario en popol-nah.html,
+    // pero se mantiene para consistencia si se decide añadir una galería en el futuro.
+    // Lógica para la funcionalidad del modal de imágenes (vacía ya que no hay imágenes en esta página para el modal)
+    const imageContainers = document.querySelectorAll('.image-container'); // No debería haber ninguno en esta página
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    function openModal(imageSrc, imageAlt) { /* No se usa en esta página */ }
+    function closeModal() { /* No se usa en esta página */ }
+
+    if (imageContainers.length > 0) { // Solo si hay contenedores de imagen (para evitar errores si se añade galería)
+        imageContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                const img = container.querySelector('img');
+                openModal(img.src, img.alt);
+            });
+        });
+        closeModalBtn.addEventListener('click', closeModal);
+        imageModal.addEventListener('click', (event) => {
+            if (event.target === imageModal) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && imageModal.classList.contains('opacity-100')) {
+                closeModal();
+            }
+        });
+    }
+  </script>
+</body>
+</html>
