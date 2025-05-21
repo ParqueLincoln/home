@@ -211,6 +211,84 @@
         transform: scale(1.05);
         transition: transform 0.3s ease-in-out;
     }
+
+    /* ==========================================================================
+        Estilos para el Modal de Éxito (Checkmark Animation)
+        ========================================================================== */
+    #successModal {
+        background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    #successModal > div { /* Contenido del modal */
+        transform: scale(0.95);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #successModal.opacity-100 > div {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .checkmark {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #4CAF50; /* Green color for success */
+        stroke-miterlimit: 10;
+        box-shadow: inset 0px 0px 0px #4CAF50;
+        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    }
+
+    .checkmark__circle {
+        stroke-dasharray: 166;
+        stroke-dashoffset: 166;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+        stroke: #4CAF50;
+        fill: none;
+        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    .checkmark__check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+
+    @keyframes stroke {
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 30px #4CAF50;
+        }
+    }
+
+    @keyframes scale {
+        0%, 100% {
+            transform: none;
+        }
+        50% {
+            transform: scale3d(1.1, 1.1, 1);
+        }
+    }
+
+    /* Dark mode adjustments for checkmark */
+    body.modo-oscuro .checkmark {
+        stroke: #34d399; /* Adjust green for dark mode */
+        box-shadow: inset 0px 0px 0px #34d399;
+    }
+    body.modo-oscuro .checkmark__circle {
+        stroke: #34d399;
+    }
  </style>
 </head>
 <body class="font-sans" id="body">
@@ -229,7 +307,7 @@
     <!-- ==========================================================================
           Banner Principal
           ========================================================================== -->
-    <header class="w-full h-64 bg-cover bg-center relative" style="background-image: url('banner.png')">
+    <header class="w-full h-64 bg-cover bg-center relative" style="background-image: url('popol-nah.png')">
     <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-green-900 opacity-60"></div>
     <div class="relative h-full flex items-center justify-center">
       <h1 class="text-white text-5xl font-extrabold drop-shadow-xl">Reservar Evento Popol-Nah</h1>
@@ -240,7 +318,7 @@
           Sección: Formulario de Reserva Popol-Nah
           ========================================================================== -->
     <section class="p-6 mt-6 rounded-xl shadow-inner mx-4 my-8 reservation-section">
-        <h2 class="text-3xl font-semibold mb-6 text-center">Formulario de Reserva para "Noche de Cuentos y Leyendas Popol-Nah"</h2>
+        <h2 class="text-3xl font-semibold mb-6 text-center">Formulario de Reserva para Popol-Nah"</h2>
         <form id="reservationForm" class="space-y-6 max-w-2xl mx-auto p-6 rounded-lg shadow-lg bg-gray-50 dark:bg-gray-800">
             <div class="flex flex-col">
                 <label for="fechaInicio" class="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Fecha y Hora de Inicio:</label>
@@ -284,6 +362,23 @@
                 ×
             </button>
             <img id="modalImage" src="" alt="Imagen ampliada" class="max-w-full max-h-full object-contain rounded-lg">
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+          Modal de Éxito de Reserva (Checkmark Animation)
+          ========================================================================== -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[10000] opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-2xl text-center max-w-md mx-4 transform scale-95 opacity-0 transition-all duration-300">
+            <svg class="checkmark mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            <p class="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">¡Reserva Enviada con Éxito!</p>
+            <div class="flex justify-center space-x-4">
+                <button id="anotherReservationBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out shadow-lg">Hacer otra reserva</button>
+                <button id="finishReservationBtn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out shadow-lg">Finalizar</button>
+            </div>
         </div>
     </div>
 
@@ -351,7 +446,13 @@
     const fechaFinError = document.getElementById('fechaFinError');
     const reservationForm = document.getElementById('reservationForm');
 
-    // Función para obtener la fecha y hora actual en formato YYYY-MM-DDTHH:MM
+    // Get references to new modal elements
+    const successModal = document.getElementById('successModal');
+    const successModalContent = successModal.querySelector('div'); // The inner div with content
+    const anotherReservationBtn = document.getElementById('anotherReservationBtn');
+    const finishReservationBtn = document.getElementById('finishReservationBtn');
+
+    // Function to get current date and time in YYYY-MM-DDTHH:MM format
     function getCurrentDateTimeLocal() {
         const now = new Date();
         const year = now.getFullYear();
@@ -362,12 +463,12 @@
         return `${year}-${month}-${day}T${hours}:${minutes}`;
     }
 
-    // 1. Establecer la fecha y hora actual por defecto y como mínimo para fechaInicio
+    // 1. Set current date and time as default and minimum for fechaInicio
     const currentDateTime = getCurrentDateTimeLocal();
     fechaInicioInput.value = currentDateTime;
     fechaInicioInput.min = currentDateTime;
 
-    // Función para validar la fecha de fin
+    // Function to validate end date
     function validateFechaFin() {
         const inicio = new Date(fechaInicioInput.value);
         const fin = new Date(fechaFinInput.value);
@@ -381,42 +482,57 @@
         }
     }
 
-    // Event listener para actualizar el mínimo de fechaFin cuando cambia fechaInicio
+    // Event listener to update fechaFin minimum when fechaInicio changes
     fechaInicioInput.addEventListener('change', () => {
-        fechaFinInput.min = fechaInicioInput.value; // La fecha de fin no puede ser anterior a la de inicio
-        validateFechaFin(); // Re-validar fechaFin si fechaInicio cambia
+        fechaFinInput.min = fechaInicioInput.value; // End date cannot be earlier than start date
+        validateFechaFin(); // Re-validate fechaFin if fechaInicio changes
     });
 
-    // E vent listener para validar fechaFin al cambiar
+    // Event listener to validate fechaFin on change
     fechaFinInput.addEventListener('change', validateFechaFin);
 
+    // Function to show the success modal
+    function showSuccessModal() {
+        successModal.classList.remove('opacity-0', 'pointer-events-none');
+        successModal.classList.add('opacity-100', 'pointer-events-auto');
+        successModalContent.classList.remove('scale-95', 'opacity-0');
+        successModalContent.classList.add('scale-100', 'opacity-100');
+    }
 
-    // Lógica para el envío del formulario de reserva
+    // Function to hide the success modal
+    function hideSuccessModal() {
+        successModal.classList.remove('opacity-100', 'pointer-events-auto');
+        successModal.classList.add('opacity-0', 'pointer-events-none');
+        successModalContent.classList.remove('scale-100', 'opacity-100');
+        successModalContent.classList.add('scale-95', 'opacity-0');
+    }
+
+    // Logic for reservation form submission
     if (reservationForm) {
         reservationForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita el envío normal del formulario
+            event.preventDefault(); // Prevent default form submission
 
-            // Validar fechas antes de enviar
+            // Validate dates before sending
             const isFechaFinValid = validateFechaFin();
-            const isFechaInicioValid = new Date(fechaInicioInput.value) >= new Date(currentDateTime); // Re-validar por si acaso
+            const isFechaInicioValid = new Date(fechaInicioInput.value) >= new Date(currentDateTime); // Re-validate just in case
 
             if (!isFechaInicioValid) {
                 fechaInicioError.classList.remove('hidden');
-                return; // Detener el envío si la fecha de inicio no es válida
+                return; // Stop submission if start date is invalid
             } else {
                 fechaInicioError.classList.add('hidden');
             }
 
             if (!isFechaFinValid) {
-                return; // Detener el envío si la fecha de fin no es válida
+                return; // Stop submission if end date is invalid
             }
 
             const fechaInicio = fechaInicioInput.value;
             const fechaFin = fechaFinInput.value;
             const correo = document.getElementById('correo').value;
-            const evento = document.getElementById('evento').value; // Ahora obtiene el valor del textarea
+            const evento = document.getElementById('evento').value; // Now gets the value from the textarea
 
-            // Formatear los datos para el cuerpo del correo
+            // Format data for email body
             const subject = encodeURIComponent(`Nueva Reserva de Evento Popol-Nah`);
             const body = encodeURIComponent(
                 `Detalles de la Reserva:\n\n` +
@@ -427,26 +543,47 @@
                 `Por favor, confirme su reserva.`
             );
 
-            // Crear el enlace mailto
+            // Create mailto link
             const mailtoLink = `mailto:lincolnparque825@gmail.com?subject=${subject}&body=${body}`;
 
-            // Abrir el cliente de correo
-            window.location.href = mailtoLink;
+            // Open mail client in a new window/tab to allow modal to be shown
+            window.open(mailtoLink, '_blank');
+
+            // Show success modal after attempting to open mail client
+            showSuccessModal();
         });
     }
 
-    // El modal de imágenes no es estrictamente necesario en popol-nah.html,
-    // pero se mantiene para consistencia si se decide añadir una galería en el futuro.
-    // Lógica para la funcionalidad del modal de imágenes (vacía ya que no hay imágenes en esta página para el modal)
-    const imageContainers = document.querySelectorAll('.image-container'); // No debería haber ninguno en esta página
+    // Event listeners for modal buttons
+    anotherReservationBtn.addEventListener('click', () => {
+        hideSuccessModal();
+        reservationForm.reset(); // Reset the form fields
+        // Re-set default date for new reservation
+        const currentDateTime = getCurrentDateTimeLocal();
+        fechaInicioInput.value = currentDateTime;
+        fechaInicioInput.min = currentDateTime;
+        fechaFinInput.value = ''; // Clear end date
+        fechaInicioError.classList.add('hidden');
+        fechaFinError.classList.add('hidden');
+    });
+
+    finishReservationBtn.addEventListener('click', () => {
+        hideSuccessModal();
+        window.location.href = 'index.html'; // Redirect to index.html
+    });
+
+    // The image modal is not strictly necessary on popol-nah.html,
+    // but is kept for consistency if a gallery is added in the future.
+    // Logic for image modal functionality (empty as there are no images on this page for the modal)
+    const imageContainers = document.querySelectorAll('.image-container'); // Should not be any on this page
     const imageModal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const closeModalBtn = document.getElementById('closeModal');
 
-    function openModal(imageSrc, imageAlt) { /* No se usa en esta página */ }
-    function closeModal() { /* No se usa en esta página */ }
+    function openModal(imageSrc, imageAlt) { /* Not used on this page */ }
+    function closeModal() { /* Not used on this page */ }
 
-    if (imageContainers.length > 0) { // Solo si hay contenedores de imagen (para evitar errores si se añade galería)
+    if (imageContainers.length > 0) { // Only if there are image containers (to prevent errors if gallery is added)
         imageContainers.forEach(container => {
             container.addEventListener('click', () => {
                 const img = container.querySelector('img');
