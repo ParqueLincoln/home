@@ -18,7 +18,811 @@
 
     /* Estilos para la barra de navegación */
     nav {
-        background-color: #ffffff; /* bg-white */
+        background-color:<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parque Lincoln</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           Variables CSS (Colores y Sombras)
+           ========================================================================== */
+        :root {
+            /* Modo Claro */
+            --light-bg-primary: #e0f2f7; /* Fondo principal claro */
+            --light-bg-secondary: #f0fdf4; /* Fondo secundario más claro */
+            --light-bg-card: #ffffff; /* Fondo de tarjetas y secciones */
+            --light-text-primary: #2d3748; /* text-gray-800 para texto principal */
+            --light-text-secondary: #4a5568; /* text-gray-700 para texto secundario */
+            --light-text-highlight: #047857; /* Verde esmeralda para enlaces y acentos */
+            --light-border-color: #a7f3d0; /* Borde verde claro */
+            --light-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --light-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+            /* Modo Oscuro */
+            --dark-bg-primary: #1a202c; /* Fondo principal muy oscuro (casi negro) */
+            --dark-bg-secondary: #2d3748; /* Fondo secundario oscuro */
+            --dark-bg-card: #2d3748; /* Fondo de tarjetas y secciones en oscuro */
+            --dark-text-primary: #e2e8f0; /* text-gray-200 para texto principal */
+            --dark-text-secondary: #a0aec0; /* text-gray-400 para texto secundario */
+            --dark-text-highlight: #4fd1c5; /* Turquesa vibrante para enlaces y acentos */
+            --dark-border-color: #4a5568; /* Borde gris oscuro */
+            --dark-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --dark-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ==========================================================================
+           Estilos Generales y Modo Claro (por defecto)
+           ========================================================================== */
+        body {
+            background: linear-gradient(to bottom right, var(--light-bg-primary), var(--light-bg-secondary));
+            color: var(--light-text-secondary);
+            font-family: 'Inter', sans-serif; /* Fuente moderna */
+            transition: background-color 0.4s ease, color 0.4s ease; /* Transición suave para el tema */
+        }
+
+        /* Estilos para la barra de navegación */
+        nav {
+            background-color: var(--light-bg-card);
+            color: var(--light-text-highlight);
+            box-shadow: var(--light-shadow-md);
+            transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+            padding: 1rem 1.5rem; /* Ajustar padding */
+        }
+
+        nav h1 {
+            color: var(--light-text-highlight);
+            font-size: 2.25rem; /* text-4xl para el título principal de nav */
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif; /* Fuente diferente para el título */
+        }
+
+        nav a {
+            color: var(--light-text-highlight);
+            padding: 0.5rem 1rem; /* Padding para los enlaces */
+            border-radius: 0.75rem; /* Bordes más redondeados */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Transición para hover */
+        }
+
+        nav a:hover {
+            background-color: var(--light-bg-primary); /* Fondo más claro al pasar el ratón */
+            color: #065f46; /* Verde más oscuro al pasar el ratón */
+            transform: translateY(-2px); /* Pequeño efecto de elevación */
+        }
+
+        /* Estilos para el pie de página */
+        footer {
+            background-color: var(--light-bg-card);
+            color: var(--light-text-secondary);
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05); /* Sombra sutil hacia arriba */
+            transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+            padding: 1.5rem; /* Más padding */
+        }
+
+        /* Estilos para secciones con fondos específicos en modo claro */
+        section {
+            background-color: var(--light-bg-card);
+            border-radius: 1.25rem; /* Bordes aún más redondeados */
+            box-shadow: var(--light-shadow-lg);
+            transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+            margin: 2rem auto; /* Centrar secciones y mayor margen */
+            max-width: 1200px; /* Ancho máximo para el contenido */
+            padding: 2.5rem; /* Más padding interno */
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif; /* Fuente para títulos h2 */
+            color: var(--light-text-highlight);
+            font-size: 2.5rem; /* text-4xl */
+            font-weight: 700;
+            text-align: center; /* Centrar títulos */
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif; /* Fuente para títulos h3 */
+            color: #065f46; /* Verde más oscuro */
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--light-text-secondary);
+            line-height: 1.7; /* Mejorar legibilidad */
+        }
+
+        a {
+            color: var(--light-text-highlight);
+            text-decoration: none; /* Quitar subrayado por defecto */
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #064e3b; /* Verde más oscuro al pasar el ratón */
+            text-decoration: underline; /* Subrayar al pasar el ratón */
+        }
+
+        /* Estilos para campos de formulario */
+        input,
+        textarea,
+        select { /* Añadido select */
+            border-color: var(--light-border-color);
+            background-color: var(--light-bg-secondary); /* Fondo más claro para inputs */
+            color: var(--light-text-secondary);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.08); /* Sombra interna más pronunciada */
+            border-radius: 0.75rem; /* Bordes redondeados */
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus { /* Añadido select */
+            outline: none;
+            border-color: var(--light-text-highlight);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.08), 0 0 0 3px rgba(4, 120, 87, 0.2); /* Sombra de foco */
+        }
+
+        /* Botones */
+        button, .btn, .btn-link { /* Añadido .btn-link */
+            background-color: var(--light-text-highlight);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: var(--light-shadow-md);
+            display: inline-block; /* Para los enlaces que se vean como botones */
+            text-align: center; /* Para centrar el texto en el botón/enlace */
+            cursor: pointer; /* Para indicar que es clicable */
+        }
+
+        button:hover, .btn:hover, .btn-link:hover { /* Añadido .btn-link */
+            background-color: #065f46;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Estilos para elementos específicos */
+        .comment-item {
+            background-color: var(--light-bg-secondary); /* Fondo más claro para items de comentario */
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* Sombra ligera */
+            border-radius: 0.75rem; /* Bordes redondeados */
+            padding: 1.25rem; /* Más padding */
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-item-card {
+            background-color: #d1fae5; /* Color específico para eventos en modo claro */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Sombra ligera */
+            border-radius: 1rem; /* Bordes redondeados */
+            padding: 1.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .event-item-card h3 {
+            color: #064e3b; /* Verde más oscuro */
+        }
+        .event-item-card p {
+            color: #4a5568;
+        }
+        .event-item-card p.text-sm {
+            color: #6b7280;
+        }
+
+        /* Estilos para los íconos de redes sociales */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px; /* Tamaño del ícono más grande */
+            height: 56px;
+            background-color: #d1fae5; /* bg-green-100 */
+            border-radius: 50%;
+            color: var(--light-text-highlight);
+            font-size: 28px; /* Tamaño del ícono dentro del círculo */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+        }
+
+        .social-icon:hover {
+            background-color: #a7f3d0; /* Un verde más claro al pasar el ratón */
+            color: #047857;
+            transform: translateY(-4px) scale(1.05); /* Pequeño efecto de elevación y zoom */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Sombra más pronunciada al pasar el ratón */
+        }
+
+        /* Estilos para el banner */
+        header {
+            background-attachment: fixed; /* Efecto parallax sutil */
+        }
+
+        /* Estilos para las pestañas de la galería y reservas */
+        .tab-button {
+            background-color: var(--light-bg-secondary);
+            color: var(--light-text-highlight);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            box-shadow: var(--light-shadow-md);
+            border: 1px solid var(--light-border-color); /* Borde sutil */
+        }
+
+        .tab-button:hover {
+            background-color: var(--light-border-color);
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background-color: var(--light-text-highlight);
+            color: white;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+            border-color: var(--light-text-highlight); /* Borde más fuerte cuando activo */
+        }
+
+        /* ==========================================================================
+           Estilos para el Modo Oscuro (se aplican cuando body tiene la clase 'modo-oscuro')
+           ========================================================================== */
+        body.modo-oscuro {
+            background: linear-gradient(to bottom right, var(--dark-bg-primary), var(--dark-bg-secondary));
+            color: var(--dark-text-secondary);
+        }
+
+        body.modo-oscuro nav,
+        body.modo-oscuro footer {
+            background-color: var(--dark-bg-card);
+            color: var(--dark-text-highlight);
+            box-shadow: var(--dark-shadow-md);
+        }
+
+        body.modo-oscuro nav h1,
+        body.modo-oscuro nav a,
+        body.modo-oscuro nav span,
+        body.modo-oscuro nav button {
+            color: var(--dark-text-highlight);
+        }
+
+        body.modo-oscuro nav a:hover {
+            background-color: #313a48; /* Fondo más oscuro al pasar el ratón */
+            color: #66e0da; /* Turquesa más claro al pasar el ratón */
+        }
+
+        body.modo-oscuro section {
+            background-color: var(--dark-bg-card);
+            color: var(--dark-text-primary);
+            box-shadow: var(--dark-shadow-lg);
+        }
+
+        body.modo-oscuro h2,
+        body.modo-oscuro h3 {
+            color: var(--dark-text-highlight); /* Verde esmeralda para títulos de sección */
+        }
+
+        body.modo-oscuro p {
+            color: var(--dark-text-secondary);
+        }
+
+        body.modo-oscuro a {
+            color: var(--dark-text-highlight);
+        }
+
+        body.modo-oscuro a:hover {
+            color: #66e0da;
+        }
+
+        body.modo-oscuro input,
+        body.modo-oscuro textarea,
+        body.modo-oscuro select { /* Añadido select */
+            background-color: var(--dark-bg-primary); /* Fondo de input/textarea muy oscuro */
+            border-color: var(--dark-border-color);
+            color: var(--dark-text-primary);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        body.modo-oscuro input:focus,
+        body.modo-oscuro textarea:focus,
+        body.modo-oscuro select:focus { /* Añadido select */
+            border-color: var(--dark-text-highlight);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.4), 0 0 0 3px rgba(79, 209, 197, 0.2);
+        }
+
+        body.modo-oscuro button, body.modo-oscuro .btn, body.modo-oscuro .btn-link { /* Añadido .btn-link */
+            background-color: var(--dark-text-highlight);
+            color: var(--dark-bg-primary); /* Texto oscuro para el botón en modo oscuro */
+            box-shadow: var(--dark-shadow-md);
+        }
+
+        body.modo-oscuro button:hover, body.modo-oscuro .btn:hover, body.modo-oscuro .btn-link:hover { /* Añadido .btn-link */
+            background-color: #66e0da;
+            color: var(--dark-bg-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        body.modo-oscuro .comment-item {
+            background-color: #2a3340; /* Fondo de comentario más oscuro */
+            color: var(--dark-text-primary);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        body.modo-oscuro .event-item-card {
+            background-color: #313a48; /* Fondo de tarjeta de evento más oscuro */
+            color: var(--dark-text-primary);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        body.modo-oscuro .event-item-card h3 {
+            color: var(--dark-text-highlight);
+        }
+        body.modo-oscuro .event-item-card p {
+            color: var(--dark-text-secondary);
+        }
+
+        /* Dark mode for social icons */
+        body.modo-oscuro .social-icon {
+            background-color: #2a3340; /* Fondo oscuro para el ícono */
+            color: var(--dark-text-highlight);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        body.modo-oscuro .social-icon:hover {
+            background-color: #313a48; /* Fondo más oscuro al pasar el ratón */
+            color: #66e0da; /* Turquesa más claro al pasar el ratón */
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.45);
+        }
+
+        /* Estilos para las pestañas de la galería y reservas en modo oscuro */
+        body.modo-oscuro .tab-button {
+            background-color: #2a3340; /* Fondo oscuro para botón inactivo */
+            color: var(--dark-text-highlight);
+            box-shadow: var(--dark-shadow-md);
+            border: 1px solid var(--dark-border-color);
+        }
+
+        body.modo-oscuro .tab-button:hover {
+            background-color: #313a48; /* Fondo más oscuro al pasar el ratón */
+            transform: translateY(-2px);
+        }
+
+        body.modo-oscuro .tab-button.active {
+            background-color: var(--dark-text-highlight);
+            color: var(--dark-bg-primary); /* Texto oscuro para botón activo */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+            transform: translateY(-1px);
+            border-color: var(--dark-text-highlight);
+        }
+
+
+        /* ==========================================================================
+           Estilos de Componentes Específicos (Galería y Modal)
+           ========================================================================== */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 1rem; /* Bordes más redondeados */
+            box-shadow: var(--light-shadow-md); /* Sombra en modo claro */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15); /* Sombra más pronunciada al pasar el ratón */
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(6, 95, 70, 0.7); /* Overlay verde semitransparente más opaco */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 1rem;
+        }
+
+        .image-container:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image-container img {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.08); /* Ligeramente más zoom al pasar el ratón */
+        }
+
+        /* Modal */
+        #imageModal {
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        #imageModal.opacity-100 {
+            opacity: 1;
+        }
+
+        #closeModal {
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+
+        /* Responsividad básica para el contenido principal */
+        @media (min-width: 768px) {
+            section {
+                padding: 3rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans" id="body">
+    <nav class="shadow-md px-6 py-4 flex justify-between items-center fixed w-full z-10 top-0">
+        <h1 class="text-3xl font-bold">Parque Lincoln</h1>
+        <div id="navOpciones" class="space-x-4 flex items-center">
+            <a href="index.html" class="hover:underline">Inicio</a>
+            <a href="#reservas-inscripciones-section" class="hover:underline">Reservas</a>
+            <button id="darkModeToggle" class="btn">Modo Oscuro</button>
+        </div>
+    </nav>
+
+    <div class="pt-20"></div>
+
+    <header class="w-full h-80 bg-cover bg-center relative" style="background-image: url('images/banner.png'); background-attachment: fixed;">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-green-900 opacity-60"></div>
+        <div class="relative h-full flex items-center justify-center">
+            <h1 class="text-white text-6xl font-extrabold drop-shadow-lg text-center font-poppins">Parque Lincoln</h1>
+        </div>
+    </header>
+
+    <section class="p-6 history-section">
+        <h2 class="mb-6">Nuestra Historia</h2>
+        <div class="flex flex-col md:flex-row items-center md:space-x-8">
+            <div class="md:w-1/2">
+                <p class="mb-4">El Parque Lincoln, ubicado en la Urbanización Lincoln de Mejicanos, ha sido un punto de encuentro vital para la comunidad. Lo que antes fue un terreno en desuso, invadido por maleza y desechos, ha sido transformado en un vibrante espacio público gracias a un esfuerzo conjunto.</p>
+                <p class="mb-4">En diciembre de 2024, el parque fue completamente remodelado e inaugurado. Esta significativa obra fue posible gracias a una inversión de más de $150,000 por parte de USAID y $55,000 adicionales aportados por la municipalidad de San Salvador Centro. La remodelación, que duró seis meses, buscó renovar la imagen del lugar, fortalecer el sentido de pertenencia y promover la convivencia vecinal.</p>
+                <p class="mb-4">Entre las mejoras realizadas se incluyen la instalación de dos nuevas áreas de juegos infantiles, la renovación de la cancha multiusos con nuevos graderíos, la adecuación de los jardines, la restauración de la zona familiar y de aeróbicos, la creación de una rampa de acceso principal, y la ampliación de la red de iluminación. Además, se llevaron a cabo jornadas de activación cultural y se implementó señalización para el cuidado del espacio público.</p>
+                <p>Este proyecto, que beneficiará a aproximadamente 5,000 habitantes, es un testimonio del compromiso por ofrecer a la comunidad un espacio seguro, inclusivo y hermoso para el esparcimiento y la creación de nuevos recuerdos.</p>
+            </div>
+            <div class="md:w-1/2 mt-8 md:mt-0">
+                <img src="images/banner.png" alt="Vista actual del Parque Lincoln en Mejicanos" class="w-full h-auto rounded-xl shadow-xl object-cover transform hover:scale-105 transition-transform duration-300">
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="p-6 gallery-section">
+        <h2 class="mb-6">Galería</h2>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button class="tab-button active" data-tab-gallery="todos">Todos</button>
+            <button class="tab-button" data-tab-gallery="eventos">Eventos</button>
+            <button class="tab-button" data-tab-gallery="popolnah">Popol-Nah</button>
+            <button class="tab-button" data-tab-gallery="torneos">Torneos</button>
+            </div>
+
+        <div id="gallery-todos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content">
+            <div class="image-container" data-category="eventos">
+                <img src="images/foto1.jpg" alt="Niños jugando en el Parque Lincoln" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="popolnah">
+                <img src="images/sinfoto.png" alt="Área verde del parque" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="torneos">
+                <img src="images/sinfoto.png" alt="Cancha multiusos del parque" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="eventos">
+                <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Festival+Primavera" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+             <div class="image-container" data-category="popolnah">
+                <img src="https://placehold.co/600x400/D1FAE5/065F46?text=Popol-Nah+Interior" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="torneos">
+                <img src="https://placehold.co/600x400/B2F5EA/065F46?text=Torneo+Baloncesto" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+        </div>
+
+        <div id="gallery-eventos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content hidden">
+            <div class="image-container" data-category="eventos">
+                <img src="images/foto1.jpg" alt="Niños jugando en el Parque Lincoln" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="eventos">
+                <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Festival+Primavera" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+             <div class="image-container" data-category="eventos">
+                <img src="https://placehold.co/600x400/CCFBF1/065F46?text=Concierto+Parque" alt="Concierto en el parque" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+        </div>
+
+        <div id="gallery-popolnah" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content hidden">
+            <div class="image-container" data-category="popolnah">
+                <img src="images/sinfoto.png" alt="Área verde del parque" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="popolnah">
+                <img src="https://placehold.co/600x400/D1FAE5/065F46?text=Popol-Nah+Interior" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="popolnah">
+                <img src="https://placehold.co/600x400/ECFDF5/065F46?text=Actividad+Cultural" alt="Actividad cultural en Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+        </div>
+
+        <div id="gallery-torneos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content hidden">
+            <div class="image-container" data-category="torneos">
+                <img src="images/sinfoto.png" alt="Cancha multiusos del parque" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="torneos">
+                <img src="https://placehold.co/600x400/B2F5EA/065F46?text=Torneo+Baloncesto" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="torneos">
+                <img src="https://placehold.co/600x400/CCFBF1/065F46?text=Torneo+Futbolito" alt="Torneo de Futbolito" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <section class="p-6 events-section">
+        <h2 class="mb-6">Próximos Eventos</h2>
+
+        <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-4 text-center">Eventos en el Parque</h3>
+            <div class="p-5 rounded-lg shadow-md mb-4 event-item-card transform transition-transform duration-300 hover:scale-[1.02]">
+                <h4 class="text-xl font-semibold mb-2">Festival de Primavera en el Parque</h4>
+                <p class="mt-2">Disfruta de un día lleno de música en vivo, puestos de comida artesanal y actividades para toda la familia. ¡Celebremos juntos la llegada de la primavera!</p>
+                <p class="text-sm mt-3 font-semibold">📅 Fecha: 15 de abril de 2025</p>
+                <p class="text-sm font-semibold">⏰ Hora: 10:00 AM - 6:00 PM</p>
+            </div>
+            <p class="text-lg italic text-center mt-6 text-gray-500 dark:text-gray-400">Más eventos próximamente...</p>
+        </div>
+
+        <div class="mb-8 mt-12">
+            <h3 class="text-2xl font-semibold mb-4 text-center">Eventos en Popol-Nah</h3>
+            <div class="p-5 rounded-lg shadow-md mb-4 event-item-card transform transition-transform duration-300 hover:scale-[1.02]">
+                <h4 class="text-xl font-semibold mb-2">Noche de Cuentos y Leyendas Popol-Nah</h4>
+                <p class="mt-2">Una velada mágica bajo las estrellas, donde narradores locales compartirán antiguas leyendas mayas y cuentos populares. Ideal para todas las edades.</p>
+                <p class="text-sm mt-3 font-semibold">📅 Fecha: 20 de mayo de 2025</p>
+                <p class="text-sm mb-4 font-semibold">⏰ Hora: 7:00 PM - 9:00 PM</p>
+            </div>
+            <p class="text-lg italic text-center mt-6 text-gray-500 dark:text-gray-400">Más eventos próximamente...</p>
+        </div>
+
+    </section>
+
+    ---
+
+    <section class="p-6 reservations-section" id="reservas-inscripciones-section">
+        <h2 class="mb-6">Reservas e Inscripciones</h2>
+        <p class="text-center mb-8 text-lg max-w-2xl mx-auto">Aquí puedes encontrar los enlaces para reservar nuestro espacio cultural, inscribirte en emocionantes torneos y registrarte en los próximos eventos del Parque Lincoln. Haz clic en el botón que te interese:</p>
+
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 max-w-3xl mx-auto">
+            <a href="URL_DE_TU_SISTEMA_RESERVAS_POPOLNAH" target="_blank" rel="noopener noreferrer" class="btn-link w-full md:w-1/3 py-4 text-xl font-bold">
+                Reservar Popol-Nah
+            </a>
+
+            <a href="URL_DE_TU_SISTEMA_INSCRIPCION_TORNEOS" target="_blank" rel="noopener noreferrer" class="btn-link w-full md:w-1/3 py-4 text-xl font-bold">
+                Inscripción Torneos
+            </a>
+
+            <a href="URL_DE_TU_SISTEMA_INSCRIPCION_EVENTOS" target="_blank" rel="noopener noreferrer" class="btn-link w-full md:w-1/3 py-4 text-xl font-bold">
+                Inscripción Eventos
+            </a>
+        </div>
+
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">Serás redirigido a una página externa para completar tu solicitud.</p>
+    </section>
+
+    ---
+
+    <section class="p-6 location-section">
+        <h2 class="mb-6">Ubicación</h2>
+        <p class="mb-6 text-center">El Parque Lincoln está ubicado en el corazón de la colonia Lincoln. Dirección: <a href="https://www.google.com/maps/place/Parque+Urbanización+Lincoln,+Mejicanos/data=!4m2!3m1!1s0x0:0x87b38ce4cc9950e8?sa=X&ved=1t:2428&ictx=111" class="underline font-semibold" target="_blank" rel="noopener noreferrer">PQJR+VRQ, Mejicanos</a>. Ven a visitarnos y disfruta de la naturaleza con respeto hacia todos los seres vivos.</p>
+        <iframe class="w-full h-80 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.129139122685!2d-89.21718362420265!3d13.734497297005223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x87b38ce4cc9950e8!2sParque%20Urbanizaci%C3%B3n%20Lincoln%2C%20Mejicanos!5e0!3m2!1ses-419!2ssv!4v1716236470000!5m2!1ses-419!2ssv" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    ---
+
+    <section class="p-6 social-media-section">
+        <h2 class="mb-6">¡Síguenos en Redes Sociales!</h2>
+        <p class="text-center mb-8 text-lg">Conéctate con nuestra comunidad y no te pierdas nada.</p>
+        <div class="flex flex-wrap justify-center items-center gap-8">
+            <a href="https://facebook.com/ParqueLincolnMejicanos" target="_blank" rel="noopener noreferrer" class="social-icon group">
+                <img src="https://img.icons8.com/ios-filled/50/facebook-new.png" alt="Facebook" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
+            </a>
+            <a href="https://instagram.com/ParqueLincolnMejicanos" target="_blank" rel="noopener noreferrer" class="social-icon group">
+                <img src="https://img.icons8.com/ios-filled/50/instagram-new--v1.png" alt="Instagram" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
+            </a>
+            <a href="https://twitter.com/ParqueLincolnSV" target="_blank" rel="noopener noreferrer" class="social-icon group">
+                <img src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="Twitter/X" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
+            </a>
+            <a href="https://youtube.com/ParqueLincolnMejicanos" target="_blank" rel="noopener noreferrer" class="social-icon group">
+                <img src="https://img.icons8.com/ios-filled/50/youtube-play--v1.png" alt="YouTube" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
+            </a>
+        </div>
+    </section>
+
+    ---
+
+    <section class="p-6 comments-section">
+        <h2 class="mb-6">Comparte tus Comentarios</h2>
+        <form class="space-y-6 max-w-xl mx-auto">
+            <input type="text" placeholder="Tu nombre" class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-green-400">
+            <textarea placeholder="Escribe tu comentario..." class="w-full p-4 border rounded-xl h-32 resize-y focus:ring-2 focus:ring-green-400"></textarea>
+            <button type="submit" class="btn w-full">Publicar Comentario</button>
+        </form>
+        <div class="mt-10 space-y-6" id="commentsList">
+            <div class="comment-item">
+                <p class="text-base"><strong>Ana:</strong> ¡Me encanta este parque! Siempre limpio y lleno de vida. Las nuevas áreas de juego son fantásticas.</p>
+            </div>
+            <div class="comment-item">
+                <p class="text-base"><strong>Carlos:</strong> Muy buena iniciativa compartir eventos aquí. ¡Sigan así! Espero con ansias el Festival de Primavera.</p>
+            </div>
+            <div class="comment-item">
+                <p class="text-base"><strong>María:</strong> El parque es hermoso, pero creo que le faltan más botes de basura para mantenerlo impecable.</p>
+            </div>
+            <div class="comment-item">
+                <p class="text-base"><strong>Pedro:</strong> ¡Excelente lugar para correr! La remodelación ha quedado genial. Lo visito todos los días.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center p-6 text-sm mt-12">
+        <p class="mb-2">© 2025 Parque Lincoln. Todos los derechos reservados.</p>
+        <p>Creada y desarrollada por Carlos Marcenaro.</p>
+    </footer>
+
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-gray-900 p-4 rounded-lg shadow-2xl max-w-4xl max-h-[90vh] overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
+            <button id="closeModal" class="absolute top-3 right-3 text-gray-300 hover:text-white text-4xl font-bold leading-none focus:outline-none transition-colors duration-200">
+                ×
+            </button>
+            <img id="modalImage" src="" alt="Imagen ampliada" class="max-w-full max-h-full object-contain rounded-lg">
+        </div>
+    </div>
+
+    <script>
+        // Lógica para la funcionalidad del modal de imágenes (Lightbox)
+        const imageContainers = document.querySelectorAll('.image-container');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+        const body = document.getElementById("body");
+
+        function openModal(imageSrc, imageAlt) {
+            modalImage.src = imageSrc;
+            modalImage.alt = imageAlt;
+            imageModal.classList.remove('opacity-0', 'pointer-events-none');
+            imageModal.classList.add('opacity-100', 'pointer-events-auto');
+            imageModal.querySelector('div').classList.remove('scale-95');
+            imageModal.querySelector('div').classList.add('scale-100');
+        }
+
+        function closeModal() {
+            imageModal.querySelector('div').classList.remove('scale-100');
+            imageModal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                imageModal.classList.remove('opacity-100', 'pointer-events-auto');
+                imageModal.classList.add('opacity-0', 'pointer-events-none');
+            }, 300);
+        }
+
+        imageContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                const img = container.querySelector('img');
+                openModal(img.src, img.alt);
+            });
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+
+        imageModal.addEventListener('click', (event) => {
+            if (event.target === imageModal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && imageModal.classList.contains('opacity-100')) {
+                closeModal();
+            }
+        });
+
+        // Lógica para el botón de Modo Oscuro
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        function applyDarkMode(isDarkMode) {
+            if (isDarkMode) {
+                body.classList.add('modo-oscuro');
+                darkModeToggle.textContent = 'Modo Claro';
+                darkModeToggle.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+                darkModeToggle.style.backgroundColor = 'var(--dark-text-highlight)';
+                darkModeToggle.style.color = 'var(--dark-bg-primary)';
+            } else {
+                body.classList.remove('modo-oscuro');
+                darkModeToggle.textContent = 'Modo Oscuro';
+                darkModeToggle.style.backgroundColor = '';
+                darkModeToggle.style.color = '';
+            }
+        }
+
+        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+        applyDarkMode(savedDarkMode);
+
+        darkModeToggle.addEventListener('click', () => {
+            const currentMode = body.classList.contains('modo-oscuro');
+            applyDarkMode(!currentMode);
+            localStorage.setItem('darkMode', !currentMode);
+        });
+
+        // Hacer la barra de navegación fija
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // Lógica para las pestañas de la galería
+        const galleryTabButtons = document.querySelectorAll('.tab-button[data-tab-gallery]');
+        const galleryContents = document.querySelectorAll('.gallery-tab-content');
+
+        function showGalleryTab(tabName) {
+            galleryContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            galleryTabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(`gallery-${tabName}`).classList.remove('hidden');
+            document.querySelector(`.tab-button[data-tab-gallery="${tabName}"]`).classList.add('active');
+        }
+
+        galleryTabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tab = button.dataset.tabGallery;
+                showGalleryTab(tab);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showGalleryTab('todos');
+        });
+
+        // Modificar el comportamiento del botón "Reservar Evento Popol-Nah" para que solo haga scroll
+        const reservePopolNahBtn = document.querySelector('a[href="#reservas-inscripciones-section"]');
+        if (reservePopolNahBtn) {
+            reservePopolNahBtn.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+                document.getElementById('reservas-inscripciones-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+    </script>
+</body>
+</html> #ffffff; /* bg-white */
         color: #047857; /* text-green-700 */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
         transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
