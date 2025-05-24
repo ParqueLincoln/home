@@ -395,7 +395,7 @@
 
         /* ==========================================================================
             Estilos de Componentes Específicos (Galería y Modal)
-            ========================================================================== */
+            ========================================================================= */
         .image-container {
             position: relative;
             overflow: hidden;
@@ -503,79 +503,121 @@
 
         <div class="flex flex-wrap justify-center gap-4 mb-8">
             <button class="tab-button active" data-tab-gallery="todos">Todos</button>
+            <button class="tab-button" data-tab-gallery="Parque">Parque</button>
             <button class="tab-button" data-tab-gallery="eventos">Eventos</button>
             <button class="tab-button" data-tab-gallery="popolnah">Popol-Nah</button>
             <button class="tab-button" data-tab-gallery="torneos">Torneos</button>
-            </div>
+        </div>
 
         <div id="gallery-todos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content">
+            <div class="image-container" data-category="parque">
+                <img src="Parque1.png" alt="Parque Lincoln: áreas verdes y juegos" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
             <div class="image-container" data-category="eventos">
-                <img src="foto1.jpg" alt="Niños jugando en el Parque Lincoln" class="w-full h-full object-cover rounded-xl">
+                <img src="eventos1.png" alt="Sin foto disponible de Evento" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="popolnah">
-                <img src="sinfoto.png" alt="Área verde del parque" class="w-full h-full object-cover rounded-xl">
+                <img src="popolnah1.png" alt="Área Popol-Nah disponible" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="torneos">
-                <img src="sinfoto.png" alt="Cancha multiusos del parque" class="w-full h-full object-cover rounded-xl">
+                <img src="torneos1.png" alt="Espacio de Torneos disponible" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="parque">
+                <img src="parque2.png" alt="Niños jugando en el Parque Lincoln" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="eventos">
-                <img src="sinfoto.png" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
+                <img src="eventos2.png" alt="Actividad en el Parque Lincoln" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
-             <div class="image-container" data-category="popolnah">
-                <img src="sinfoto.png" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
+            <div class="image-container" data-category="popolnah">
+                <img src="popolnah2.png" alt="Salón Popol-Nah" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="torneos">
-                <img src="sinfoto.png" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
+                <img src="torneos2.png" alt="Cancha multiusos del parque" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+
+        </div>
+
+        <div id="gallery-Parque" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content hidden">
+            <div class="image-container" data-category="Parque">
+                <img src="parque1.png" alt="Entrada principal del Parque Lincoln" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="Parque">
+                <img src="Parque2.png" alt="Área de juegos infantiles en el parque" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="Parque">
+                <img src="Parque3.png" alt="Cancha multiusos del Parque Lincoln" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="Parque">
+                <img src="Parque4.png" alt="Zona de ejercicio al aire libre" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
 
         <div id="gallery-eventos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content hidden">
             <div class="image-container" data-category="eventos">
-                <img src="foto1.jpg" alt="Niños jugando en el Parque Lincoln" class="w-full h-full object-cover rounded-xl">
+                <img src="eventos1.png" alt="Evento comunitario en el parque" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="eventos">
-                <img src="sinfoto.png" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
+                <img src="eventos2.png" alt="Actividad cultural en el parque" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
-             <div class="image-container" data-category="eventos">
-                <img src="sinfoto.png" alt="Concierto en el parque" class="w-full h-full object-cover rounded-xl">
+            <div class="image-container" data-category="eventos">
+                <img src="eventos3.png" alt="Celebración en el Parque Lincoln" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="eventos">
+                <img src="eventos4.png" alt="Grupo disfrutando de un evento" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
 
         <div id="gallery-popolnah" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content hidden">
             <div class="image-container" data-category="popolnah">
-                <img src="sinfoto.png" alt="Área verde del parque" class="w-full h-full object-cover rounded-xl">
+                <img src="popolnah1.png" alt="Interior del Salón Popol-Nah" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="popolnah">
-                <img src="sinfoto.png" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <img src="popolnah2.png" alt="Vista exterior del Salón Popol-Nah" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="popolnah">
-                <img src="sinfoto.png" alt="Actividad cultural en Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <img src="popolnah3.png" alt="Evento en el Salón Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+
+            <div class="image-container" data-category="popolnah">
+                <img src="popolnah4.png" alt="Detalle arquitectónico de Popol-Nah" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
 
         <div id="gallery-torneos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 gallery-tab-content hidden">
             <div class="image-container" data-category="torneos">
-                <img src="sinfoto.png" alt="Cancha multiusos del parque" class="w-full h-full object-cover rounded-xl">
+                <img src="torneos1.png" alt="Espacio de Torneos disponible" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="torneos">
-                <img src="sinfoto.png" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
+                <img src="torneos2.png" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="torneos">
-                <img src="sinfoto.png" alt="Torneo de Futbolito" class="w-full h-full object-cover rounded-xl">
+                <img src="torneos3.png" alt="Torneo de Futbolito" class="w-full h-full object-cover rounded-xl">
+                <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
+            </div>
+            <div class="image-container" data-category="torneos">
+                <img src="torneos4.png" alt="Vista de la cancha en un torneo" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
@@ -607,8 +649,14 @@
             </div>
             <p class="text-lg italic text-center mt-6 text-gray-500 dark:text-gray-400">Más eventos próximamente...</p>
         </div>
-
     </section>
+
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="relative max-w-4xl max-h-full">
+            <img id="modalImage" src="" alt="Imagen en vista ampliada" class="max-w-full max-h-full object-contain rounded-lg shadow-xl">
+            <button id="closeModal" class="absolute top-4 right-4 text-white text-5xl font-bold p-2 leading-none">&times;</button>
+        </div>
+    </div>
 
     ---
 
@@ -650,8 +698,7 @@
             <a href="https://facebook.com/ParqueLincolnMejicanos" target="_blank" rel="noopener noreferrer" class="social-icon group">
                 <img src="https://img.icons8.com/ios-filled/50/facebook-new.png" alt="Facebook" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
             </a>
-            <a href="
-https://www.instagram.com/parque_lincoln?igsh=emFhbGUxMHU5bTVu" target="_blank" rel="noopener noreferrer" class="social-icon group">
+            <a href="https://www.instagram.com/parque_lincoln?igsh=emFhbGUxMHU5bTVu" target="_blank" rel="noopener noreferrer" class="social-icon group">
                 <img src="https://img.icons8.com/ios-filled/50/instagram-new.png" alt="Instagram" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
             </a>
             </div>
@@ -659,7 +706,7 @@ https://www.instagram.com/parque_lincoln?igsh=emFhbGUxMHU5bTVu" target="_blank" 
 
     <footer class="text-center py-6 px-4">
         <p class="text-sm">&copy; 2025 Parque Lincoln. Todos los derechos reservados.</p>
-        <p class="text-xs mt-2">Diseñado por Carlos Marcenaro</p>
+        <p class="text-xs mt-2">Diseñado por Carlos Marcenaro.</p>
     </footer>
 
     <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
@@ -670,63 +717,51 @@ https://www.instagram.com/parque_lincoln?igsh=emFhbGUxMHU5bTVu" target="_blank" 
     </div>
 
     <script>
-        // Dark Mode Toggle
+        // Lógica del modo oscuro
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.getElementById('body');
 
         darkModeToggle.addEventListener('click', () => {
             body.classList.toggle('modo-oscuro');
             if (body.classList.contains('modo-oscuro')) {
-                darkModeToggle.textContent = 'Modo Claro';
                 localStorage.setItem('theme', 'dark');
+                darkModeToggle.textContent = 'Modo Claro';
             } else {
-                darkModeToggle.textContent = 'Modo Oscuro';
                 localStorage.setItem('theme', 'light');
+                darkModeToggle.textContent = 'Modo Oscuro';
             }
         });
 
-        // Check for saved theme preference on load
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
+        // Aplicar el tema guardado al cargar la página
+        if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('modo-oscuro');
             darkModeToggle.textContent = 'Modo Claro';
+        } else {
+            darkModeToggle.textContent = 'Modo Oscuro';
         }
 
-        // Gallery Tabs Functionality
-        const galleryTabButtons = document.querySelectorAll('.tab-button');
-        const galleryTabContents = document.querySelectorAll('.gallery-tab-content');
+        // Lógica de las pestañas de la galería
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const galleryContents = document.querySelectorAll('.gallery-tab-content');
 
-        galleryTabButtons.forEach(button => {
+        tabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                galleryTabButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to the clicked button
+                const targetTab = button.dataset.tabGallery;
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
-                const targetTabId = button.dataset.tabGallery;
-
-                galleryTabContents.forEach(content => {
-                    if (content.id === `gallery-${targetTabId}`) {
+                galleryContents.forEach(content => {
+                    if (content.id === `gallery-${targetTab}`) {
                         content.classList.remove('hidden');
                     } else {
                         content.classList.add('hidden');
                     }
                 });
-
-                // Special handling for 'todos' tab to show all images
-                if (targetTabId === 'todos') {
-                    document.getElementById('gallery-todos').classList.remove('hidden');
-                    // Ensure only 'todos' is visible if it was hidden by other category filters
-                    galleryTabContents.forEach(content => {
-                        if (content.id !== 'gallery-todos') {
-                            content.classList.add('hidden');
-                        }
-                    });
-                }
             });
         });
 
-        // Image Modal Functionality
+        // Lógica del modal de la galería de imágenes
         const imageContainers = document.querySelectorAll('.image-container');
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
@@ -734,8 +769,10 @@ https://www.instagram.com/parque_lincoln?igsh=emFhbGUxMHU5bTVu" target="_blank" 
 
         imageContainers.forEach(container => {
             container.addEventListener('click', () => {
-                const imgSrc = container.querySelector('img').src;
-                modalImage.src = imgSrc;
+                const imageUrl = container.querySelector('img').src;
+                const imageAlt = container.querySelector('img').alt; // Obtener el texto alt
+                modalImage.src = imageUrl;
+                modalImage.alt = imageAlt; // Asignar el texto alt al modal
                 imageModal.classList.remove('opacity-0', 'pointer-events-none');
                 imageModal.classList.add('opacity-100');
             });
@@ -746,12 +783,25 @@ https://www.instagram.com/parque_lincoln?igsh=emFhbGUxMHU5bTVu" target="_blank" 
             imageModal.classList.add('opacity-0', 'pointer-events-none');
         });
 
-        // Close modal when clicking outside the image
-        imageModal.addEventListener('click', (event) => {
-            if (event.target === imageModal) {
+        // Cerrar modal al hacer clic fuera de la imagen
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
                 imageModal.classList.remove('opacity-100');
                 imageModal.classList.add('opacity-0', 'pointer-events-none');
             }
+        });
+
+        // Agregando el script para manejar imágenes que no cargan
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.image-container img');
+
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.src = 'sinfoto.png'; // Reemplaza con sinfoto.png
+                    this.alt = 'Imagen no disponible'; // Cambia el texto alternativo
+                    this.onerror = null; // Evita bucles infinitos si sinfoto.png también falla
+                };
+            });
         });
     </script>
 </body>
