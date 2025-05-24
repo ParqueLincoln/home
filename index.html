@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================================
-           Variables CSS (Colores y Sombras)
-           ========================================================================== */
+            Variables CSS (Colores y Sombras)
+            ========================================================================== */
         :root {
             /* Modo Claro */
             --light-bg-primary: #e0f2f7; /* Fondo principal claro */
@@ -35,8 +35,8 @@
         }
 
         /* ==========================================================================
-           Estilos Generales y Modo Claro (por defecto)
-           ========================================================================== */
+            Estilos Generales y Modo Claro (por defecto)
+            ========================================================================== */
         body {
             background: linear-gradient(to bottom right, var(--light-bg-primary), var(--light-bg-secondary));
             color: var(--light-text-secondary);
@@ -58,6 +58,22 @@
             font-size: 2.25rem; /* text-4xl para el título principal de nav */
             font-weight: 700;
             font-family: 'Poppins', sans-serif; /* Fuente diferente para el título */
+        }
+
+        /* New CSS for the logo and brand text */
+        .navbar-brand {
+            display: flex; /* Makes the logo and text align horizontally */
+            align-items: center; /* Vertically centers the logo and text */
+            color: var(--light-text-highlight); /* Ensure text color is applied */
+            font-size: 2.25rem; /* text-4xl for the main nav title */
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif; /* Font for the title */
+        }
+
+        .navbar-brand .logo {
+            height: 40px; /* Adjust as needed - This sets the height of your logo */
+            width: auto; /* Maintains the aspect ratio */
+            margin-right: 10px; /* Adds some space between the logo and the text */
         }
 
         nav a {
@@ -243,8 +259,8 @@
         }
 
         /* ==========================================================================
-           Estilos para el Modo Oscuro (se aplican cuando body tiene la clase 'modo-oscuro')
-           ========================================================================== */
+            Estilos para el Modo Oscuro (se aplican cuando body tiene la clase 'modo-oscuro')
+            ========================================================================== */
         body.modo-oscuro {
             background: linear-gradient(to bottom right, var(--dark-bg-primary), var(--dark-bg-secondary));
             color: var(--dark-text-secondary);
@@ -257,9 +273,11 @@
             box-shadow: var(--dark-shadow-md);
         }
 
-        body.modo-oscuro nav h1,
+        body.modo-oscuro .navbar-brand { /* Dark mode for the brand (logo + text) */
+            color: var(--dark-text-highlight);
+        }
+
         body.modo-oscuro nav a,
-        body.modo-oscuro nav span,
         body.modo-oscuro nav button {
             color: var(--dark-text-highlight);
         }
@@ -376,8 +394,8 @@
 
 
         /* ==========================================================================
-           Estilos de Componentes Específicos (Galería y Modal)
-           ========================================================================== */
+            Estilos de Componentes Específicos (Galería y Modal)
+            ========================================================================== */
         .image-container {
             position: relative;
             overflow: hidden;
@@ -443,7 +461,10 @@
 </head>
 <body class="font-sans" id="body">
     <nav class="shadow-md px-6 py-4 flex justify-between items-center fixed w-full z-10 top-0">
-        <h1 class="text-3xl font-bold">Parque Lincoln</h1>
+        <div class="navbar-brand">
+            <img src="logo.png" alt="Parque Lincoln Logo" class="logo">
+            <span>Parque Lincoln</span>
+        </div>
         <div id="navOpciones" class="space-x-4 flex items-center">
             <a href="index.html" class="hover:underline">Inicio</a>
             <a href="#reservas-inscripciones-section" class="hover:underline">Reservas</a>
@@ -501,15 +522,15 @@
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="eventos">
-                <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Festival+Primavera" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
              <div class="image-container" data-category="popolnah">
-                <img src="https://placehold.co/600x400/D1FAE5/065F46?text=Popol-Nah+Interior" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="torneos">
-                <img src="https://placehold.co/600x400/B2F5EA/065F46?text=Torneo+Baloncesto" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
@@ -520,11 +541,11 @@
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="eventos">
-                <img src="https://placehold.co/600x400/A7F3D0/065F46?text=Festival+Primavera" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Festival de Primavera" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
              <div class="image-container" data-category="eventos">
-                <img src="https://placehold.co/600x400/CCFBF1/065F46?text=Concierto+Parque" alt="Concierto en el parque" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Concierto en el parque" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
@@ -535,11 +556,11 @@
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="popolnah">
-                <img src="https://placehold.co/600x400/D1FAE5/065F46?text=Popol-Nah+Interior" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Interior de Popol-Nah" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="popolnah">
-                <img src="https://placehold.co/600x400/ECFDF5/065F46?text=Actividad+Cultural" alt="Actividad cultural en Popol-Nah" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Actividad cultural en Popol-Nah" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
@@ -550,11 +571,11 @@
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="torneos">
-                <img src="https://placehold.co/600x400/B2F5EA/065F46?text=Torneo+Baloncesto" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Torneo de Baloncesto" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
             <div class="image-container" data-category="torneos">
-                <img src="https://placehold.co/600x400/CCFBF1/065F46?text=Torneo+Futbolito" alt="Torneo de Futbolito" class="w-full h-full object-cover rounded-xl">
+                <img src="sinfoto.png" alt="Torneo de Futbolito" class="w-full h-full object-cover rounded-xl">
                 <div class="image-overlay"><p class="text-lg font-bold">Ver Foto</p></div>
             </div>
         </div>
@@ -629,177 +650,109 @@
             <a href="https://facebook.com/ParqueLincolnMejicanos" target="_blank" rel="noopener noreferrer" class="social-icon group">
                 <img src="https://img.icons8.com/ios-filled/50/facebook-new.png" alt="Facebook" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
             </a>
-            <a href="https://instagram.com/ParqueLincolnMejicanos" target="_blank" rel="noopener noreferrer" class="social-icon group">
-                <img src="https://img.icons8.com/ios-filled/50/instagram-new--v1.png" alt="Instagram" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
+            <a href="
+https://www.instagram.com/parque_lincoln?igsh=emFhbGUxMHU5bTVu" target="_blank" rel="noopener noreferrer" class="social-icon group">
+                <img src="https://img.icons8.com/ios-filled/50/instagram-new.png" alt="Instagram" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
             </a>
-            <a href="https://twitter.com/ParqueLincolnSV" target="_blank" rel="noopener noreferrer" class="social-icon group">
-                <img src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="Twitter/X" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
-            </a>
-            <a href="https://youtube.com/ParqueLincolnMejicanos" target="_blank" rel="noopener noreferrer" class="social-icon group">
-                <img src="https://img.icons8.com/ios-filled/50/youtube-play--v1.png" alt="YouTube" class="w-9 h-9 group-hover:invert-0 group-hover:filter">
-            </a>
-        </div>
+            </div>
     </section>
 
-    ---
-
-    <section class="p-6 comments-section">
-        <h2 class="mb-6">Comparte tus Comentarios</h2>
-        <form class="space-y-6 max-w-xl mx-auto">
-            <input type="text" placeholder="Tu nombre" class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-green-400">
-            <textarea placeholder="Escribe tu comentario..." class="w-full p-4 border rounded-xl h-32 resize-y focus:ring-2 focus:ring-green-400"></textarea>
-            <button type="submit" class="btn w-full">Publicar Comentario</button>
-        </form>
-        <div class="mt-10 space-y-6" id="commentsList">
-            <div class="comment-item">
-                <p class="text-base"><strong>Ana:</strong> ¡Me encanta este parque! Siempre limpio y lleno de vida. Las nuevas áreas de juego son fantásticas.</p>
-            </div>
-            <div class="comment-item">
-                <p class="text-base"><strong>Carlos:</strong> Muy buena iniciativa compartir eventos aquí. ¡Sigan así! Espero con ansias el Festival de Primavera.</p>
-            </div>
-            <div class="comment-item">
-                <p class="text-base"><strong>María:</strong> El parque es hermoso, pero creo que le faltan más botes de basura para mantenerlo impecable.</p>
-            </div>
-            <div class="comment-item">
-                <p class="text-base"><strong>Pedro:</strong> ¡Excelente lugar para correr! La remodelación ha quedado genial. Lo visito todos los días.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="text-center p-6 text-sm mt-12">
-        <p class="mb-2">© 2025 Parque Lincoln. Todos los derechos reservados.</p>
-        <p>Creada y desarrollada por Carlos Marcenaro.</p>
+    <footer class="text-center py-6 px-4">
+        <p class="text-sm">&copy; 2025 Parque Lincoln. Todos los derechos reservados.</p>
+        <p class="text-xs mt-2">Diseñado por Carlos Marcenaro</p>
     </footer>
 
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999] opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="relative bg-gray-900 p-4 rounded-lg shadow-2xl max-w-4xl max-h-[90vh] overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
-            <button id="closeModal" class="absolute top-3 right-3 text-gray-300 hover:text-white text-4xl font-bold leading-none focus:outline-none transition-colors duration-200">
-                ×
-            </button>
-            <img id="modalImage" src="" alt="Imagen ampliada" class="max-w-full max-h-full object-contain rounded-lg">
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="relative max-w-4xl max-h-full">
+            <button id="closeModal" class="absolute top-4 right-4 text-white text-4xl font-bold cursor-pointer">&times;</button>
+            <img id="modalImage" src="" alt="Amplified Park Image" class="max-w-full max-h-screen object-contain rounded-lg shadow-xl">
         </div>
     </div>
 
     <script>
-        // Lógica para la funcionalidad del modal de imágenes (Lightbox)
-        const imageContainers = document.querySelectorAll('.image-container');
-        const imageModal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const closeModalBtn = document.getElementById('closeModal');
-        const body = document.getElementById("body");
-
-        function openModal(imageSrc, imageAlt) {
-            modalImage.src = imageSrc;
-            modalImage.alt = imageAlt;
-            imageModal.classList.remove('opacity-0', 'pointer-events-none');
-            imageModal.classList.add('opacity-100', 'pointer-events-auto');
-            imageModal.querySelector('div').classList.remove('scale-95');
-            imageModal.querySelector('div').classList.add('scale-100');
-        }
-
-        function closeModal() {
-            imageModal.querySelector('div').classList.remove('scale-100');
-            imageModal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => {
-                imageModal.classList.remove('opacity-100', 'pointer-events-auto');
-                imageModal.classList.add('opacity-0', 'pointer-events-none');
-            }, 300);
-        }
-
-        imageContainers.forEach(container => {
-            container.addEventListener('click', () => {
-                const img = container.querySelector('img');
-                openModal(img.src, img.alt);
-            });
-        });
-
-        closeModalBtn.addEventListener('click', closeModal);
-
-        imageModal.addEventListener('click', (event) => {
-            if (event.target === imageModal) {
-                closeModal();
-            }
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && imageModal.classList.contains('opacity-100')) {
-                closeModal();
-            }
-        });
-
-        // Lógica para el botón de Modo Oscuro
+        // Dark Mode Toggle
         const darkModeToggle = document.getElementById('darkModeToggle');
-
-        function applyDarkMode(isDarkMode) {
-            if (isDarkMode) {
-                body.classList.add('modo-oscuro');
-                darkModeToggle.textContent = 'Modo Claro';
-                darkModeToggle.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-                darkModeToggle.style.backgroundColor = 'var(--dark-text-highlight)';
-                darkModeToggle.style.color = 'var(--dark-bg-primary)';
-            } else {
-                body.classList.remove('modo-oscuro');
-                darkModeToggle.textContent = 'Modo Oscuro';
-                darkModeToggle.style.backgroundColor = '';
-                darkModeToggle.style.color = '';
-            }
-        }
-
-        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-        applyDarkMode(savedDarkMode);
+        const body = document.getElementById('body');
 
         darkModeToggle.addEventListener('click', () => {
-            const currentMode = body.classList.contains('modo-oscuro');
-            applyDarkMode(!currentMode);
-            localStorage.setItem('darkMode', !currentMode);
-        });
-
-        // Hacer la barra de navegación fija
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
-                nav.classList.add('shadow-lg');
+            body.classList.toggle('modo-oscuro');
+            if (body.classList.contains('modo-oscuro')) {
+                darkModeToggle.textContent = 'Modo Claro';
+                localStorage.setItem('theme', 'dark');
             } else {
-                nav.classList.remove('shadow-lg');
+                darkModeToggle.textContent = 'Modo Oscuro';
+                localStorage.setItem('theme', 'light');
             }
         });
 
-        // Lógica para las pestañas de la galería
-        const galleryTabButtons = document.querySelectorAll('.tab-button[data-tab-gallery]');
-        const galleryContents = document.querySelectorAll('.gallery-tab-content');
-
-        function showGalleryTab(tabName) {
-            galleryContents.forEach(content => {
-                content.classList.add('hidden');
-            });
-
-            galleryTabButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            document.getElementById(`gallery-${tabName}`).classList.remove('hidden');
-            document.querySelector(`.tab-button[data-tab-gallery="${tabName}"]`).classList.add('active');
+        // Check for saved theme preference on load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('modo-oscuro');
+            darkModeToggle.textContent = 'Modo Claro';
         }
+
+        // Gallery Tabs Functionality
+        const galleryTabButtons = document.querySelectorAll('.tab-button');
+        const galleryTabContents = document.querySelectorAll('.gallery-tab-content');
 
         galleryTabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const tab = button.dataset.tabGallery;
-                showGalleryTab(tab);
+                // Remove active class from all buttons
+                galleryTabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to the clicked button
+                button.classList.add('active');
+
+                const targetTabId = button.dataset.tabGallery;
+
+                galleryTabContents.forEach(content => {
+                    if (content.id === `gallery-${targetTabId}`) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+
+                // Special handling for 'todos' tab to show all images
+                if (targetTabId === 'todos') {
+                    document.getElementById('gallery-todos').classList.remove('hidden');
+                    // Ensure only 'todos' is visible if it was hidden by other category filters
+                    galleryTabContents.forEach(content => {
+                        if (content.id !== 'gallery-todos') {
+                            content.classList.add('hidden');
+                        }
+                    });
+                }
             });
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            showGalleryTab('todos');
+        // Image Modal Functionality
+        const imageContainers = document.querySelectorAll('.image-container');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+
+        imageContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                const imgSrc = container.querySelector('img').src;
+                modalImage.src = imgSrc;
+                imageModal.classList.remove('opacity-0', 'pointer-events-none');
+                imageModal.classList.add('opacity-100');
+            });
         });
 
-        // Modificar el comportamiento del botón "Reservar Evento Popol-Nah" para que solo haga scroll
-        const reservePopolNahBtn = document.querySelector('a[href="#reservas-inscripciones-section"]');
-        if (reservePopolNahBtn) {
-            reservePopolNahBtn.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-                document.getElementById('reservas-inscripciones-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        }
+        closeModal.addEventListener('click', () => {
+            imageModal.classList.remove('opacity-100');
+            imageModal.classList.add('opacity-0', 'pointer-events-none');
+        });
+
+        // Close modal when clicking outside the image
+        imageModal.addEventListener('click', (event) => {
+            if (event.target === imageModal) {
+                imageModal.classList.remove('opacity-100');
+                imageModal.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
     </script>
 </body>
 </html>
